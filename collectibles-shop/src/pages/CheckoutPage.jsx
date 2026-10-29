@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { translateTitle } from '../utils/translate.js';
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
@@ -21,7 +22,7 @@ export default function CheckoutPage() {
 
   if (!items.length && !submitted) {
     return (
-      <div className="container">
+      <div className="container" style={{ paddingTop: '24px' }}>
         <h1 style={{ marginBottom: '16px' }}>Оформление заказа</h1>
         <p>Корзина пуста. <Link to="/catalog" style={{ color: 'var(--primary)' }}>Вернуться в каталог</Link></p>
       </div>
@@ -42,7 +43,6 @@ export default function CheckoutPage() {
     e.preventDefault();
     if (!validate()) return;
     
-    // Имитация успешного заказа
     setSubmitted(true);
     clearCart();
     showToast('Заказ успешно оформлен!');
@@ -81,7 +81,7 @@ export default function CheckoutPage() {
   );
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: '24px' }}>
       <h1 style={{ marginBottom: '24px' }}>Оформление заказа</h1>
       
       <div style={{ display: 'grid', gap: '24px' }} className="checkout-layout">
@@ -103,7 +103,7 @@ export default function CheckoutPage() {
             {items.map((item) => (
               <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {item.title} × {item.quantity}
+                  {translateTitle(item.title)} × {item.quantity}
                 </span>
                 <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>{Math.round(item.price * item.quantity * 90)} ₽</span>
               </div>

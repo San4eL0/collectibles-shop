@@ -23,21 +23,31 @@ export default function CatalogPage() {
   const [sort, setSort] = useState('default');
 
   useEffect(() => {
+    let isMounted = true;
     setLoading(true);
     setError(null);
+    
     const apiCat = category ? CAT_MAP[category] : null;
-    let url = '/products?limit=50';
+    let url = '/products?limit=100'; 
     
     if (debouncedQ) {
-      url = `/products/search?q=${debouncedQ}&limit=50`;
+      url = `/products/search?q=${debouncedQ}&limit=100`;
     } else if (apiCat) {
-      url = `/products/category/${apiCat}?limit=50`;
+      url = `/products/category/${apiCat}?limit=100`;
     }
 
     fetchApi(url)
-      .then((data) => setProducts(data.products || []))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+      .then((data) => {
+        if (isMounted) setProducts(data.products || []);
+      })
+      .catch((err) => {
+        if (isMounted) setError(err.message);
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => { isMounted = false; };
   }, [category, debouncedQ]);
 
   // Клиентская фильтрация и сортировка
@@ -51,10 +61,10 @@ export default function CatalogPage() {
     });
 
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: '24px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
         <h1 style={{ fontSize: '1.8rem' }}>
-          {category ? CAT_MAP[category] : 'Все товары'} 
+          {category === 'vinyl' ? 'Винил' : category === 'figures' ? 'Фигурки' : category === 'coins' ? 'Монеты' : 'Все товары'} 
           {debouncedQ && <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}> — «{debouncedQ}»</span>}
         </h1>
         

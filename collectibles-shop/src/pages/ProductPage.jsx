@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { fetchApi } from '../services/api';
 import { useCart } from '../context/CartContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { translateTitle, translateCategory, translateDescription } from '../utils/translate.js';
 import Loader from '../components/Loader.jsx';
 import Alert from '../components/Alert.jsx';
 
@@ -16,21 +17,25 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [qty, setQty] = useState(1);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
     setQty(1);
+    setImgError(false);
+    
     fetchApi(`/products/${id}`)
       .then(setProduct)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <div className="container"><Loader /></div>;
+  if (loading) return <div className="container" style={{ paddingTop: '24px' }}><Loader /></div>;
+  
   if (error || !product) {
     return (
-      <div className="container">
+      <div className="container" style={{ paddingTop: '24px' }}>
         <Alert 
           type="error" 
           message={`Товар не найден: ${error || 'Ошибка 404'}`} 
@@ -42,30 +47,41 @@ export default function ProductPage() {
 
   const handleAdd = () => {
     for (let i = 0; i < qty; i++) addItem(product);
-    showToast(`«${product.title}» × ${qty} добавлен в корзину`);
+    showToast(`«${translateTitle(product.title)}» × ${qty} добавлен в корзину`);
   };
 
+  const imageSrc = imgError || !product.thumbnail 
+    ? 'https://placehold.co/600x600/e5e0ec/6b4fbb?text=Нет+фото' 
+    : product.thumbnail;
+
   return (
-    <div className="container">
+    <div className="container" style={{ paddingTop: '24px' }}>
       <nav style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
-        <Link to="/">Главная</Link> / <Link to="/catalog">Каталог</Link> / <span>{product.title}</span>
+        <Link to="/">Главная</Link> / <Link to="/catalog">Каталог</Link> / <span>{translateTitle(product.title)}</span>
       </nav>
 
       <div style={{ display: 'grid', gap: '32px' }} className="product-layout">
         <div style={{ background: 'var(--surface)', padding: '16px', borderRadius: '12px', boxShadow: 'var(--shadow)' }}>
-          <img src={product.thumbnail} alt={product.title} style={{ width: '100%', borderRadius: '8px' }} />
+          <img 
+            src={imageSrc} 
+            alt={translateTitle(product.title)} 
+            onError={() => setImgError(true)}
+            style={{ width: '100%', borderRadius: '8px' }} 
+          />
         </div>
         
         <div style={{ display: 'grid', gap: '16px', alignContent: 'start' }}>
-          <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)' }}>{product.title}</h1>
+          <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)' }}>{translateTitle(product.title)}</h1>
           
-          <div style={{ display: 'flex', gap: '16px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+          <div style={{ display: 'flex', gap: '16px', color: 'var(--text-muted)', fontSize: '0.9rem', flexWrap: 'wrap' }}>
             <span>⭐ {product.rating?.toFixed(1) || 'Нет оценок'}</span>
             <span>Артикул: {product.sku || product.id}</span>
             <span>В наличии: {product.stock} шт.</span>
           </div>
 
-          <p style={{ color: 'var(--text-muted)' }}>{product.description}</p>
+          <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>
+            {translateDescription(product.description)}
+          </p>
           
           <strong style={{ fontSize: '2rem', color: 'var(--primary)' }}>
             {Math.round(product.price * 90)} ₽
@@ -89,10 +105,11 @@ export default function ProductPage() {
           <div style={{ background: 'var(--surface)', borderRadius: '12px', padding: '20px', marginTop: '8px', boxShadow: 'var(--shadow)' }}>
             <h3 style={{ marginBottom: '12px', fontSize: '1.05rem' }}>Характеристики</h3>
             <dl style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '0.9rem' }}>
-              <dt style={{ color: 'var(--text-muted)' }}>Категория</dt><dd>{product.category}</dd>
+              <dt style={{ color: 'var(--text-muted)' }}>Категория</dt><dd>{translateCategory(product.category)}</dd>
+              <dt style={{ color: 'var(--text-muted)' }}>Бренд</dt><dd>{product.brand || 'Не указан'}</dd>
               <dt style={{ color: 'var(--text-muted)' }}>Вес</dt><dd>{product.weight || '—'} г</dd>
               <dt style={{ color: 'var(--text-muted)' }}>Габариты</dt><dd>{product.dimensions ? `${product.dimensions.width}×${product.dimensions.height}×${product.dimensions.depth} см` : '—'}</dd>
-              <dt style={{ color: 'var(--text-muted)' }}>Гарантия</dt><dd>{product.warrantyInformation || '—'}</dd>
+              <dt style={{ color: 'var(--text-muted)' }}>Гарантия</dt><dd>{product.warrantyInformation || '1 год'}</dd>
             </dl>
           </div>
         </div>

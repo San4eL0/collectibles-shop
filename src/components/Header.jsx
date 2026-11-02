@@ -4,9 +4,11 @@ import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 
 const CATEGORIES = [
-  { id: 'vinyl', name: 'Винил', api: 'fragrances' },
-  { id: 'figures', name: 'Фигурки', api: 'laptops' },
-  { id: 'coins', name: 'Монеты', api: 'mens-watches' },
+  { id: 'all', name: 'Все' },
+  { id: 'vinyl', name: 'Винил' },
+  { id: 'figures', name: 'Фигурки' },
+  { id: 'coins', name: 'Монеты' },
+  { id: 'medals', name: 'Медали' },
 ];
 
 export default function Header() {
@@ -39,8 +41,6 @@ export default function Header() {
         </form>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          
-          {/* Переключатель стиля */}
           <button onClick={toggleTheme} className="btn btn-outline" style={{ padding: '6px 12px', fontSize: '0.8rem', minHeight: '36px', borderRadius: '8px' }} title="Сменить тему">
             {theme === 'light' ? 'TNO MODE' : 'STANDARD MODE'}
           </button>
@@ -59,11 +59,18 @@ export default function Header() {
           )}
         </div>
       </div>
+      
+      {/* Навигация по категориям */}
       <nav style={{ borderTop: '1px solid var(--border)' }}>
         <div className="container" style={{ display: 'flex', gap: 8, overflowX: 'auto', padding: '8px 16px' }}>
-          <NavLink to="/catalog" style={({ isActive }) => ({ padding: '6px 12px', borderRadius: 6, fontWeight: isActive ? 700 : 500, color: isActive ? 'var(--primary)' : 'var(--text)' })}>Все</NavLink>
           {CATEGORIES.map((c) => (
-            <NavLink key={c.id} to={`/catalog/${c.id}`} style={({ isActive }) => ({ padding: '6px 12px', borderRadius: 6, fontWeight: isActive ? 700 : 500, color: isActive ? 'var(--primary)' : 'var(--text)', whiteSpace: 'nowrap' })}>{c.name}</NavLink>
+            <NavLink 
+              key={c.id} 
+              to={c.id === 'all' ? '/catalog' : `/catalog/${c.id}`} 
+              style={({ isActive }) => ({ padding: '6px 12px', borderRadius: 6, fontWeight: isActive ? 700 : 500, color: isActive ? 'var(--primary)' : 'var(--text)', whiteSpace: 'nowrap' })}
+            >
+              {c.name}
+            </NavLink>
           ))}
         </div>
       </nav>

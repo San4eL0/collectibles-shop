@@ -14,11 +14,11 @@ export default function ProductCard({ product }) {
   };
 
   const imageSrc = imgError || !product.thumbnail 
-    ? 'https://placehold.co/400x400/e5e0ec/6b4fbb?text=No+Image' 
+    ? 'https://placehold.co/400x400/12161c/5cb8b2?text=No+Image' 
     : product.thumbnail;
 
   return (
-    <div className="product-card" style={{ 
+    <div style={{ 
       background: 'var(--surface)', 
       borderRadius: 'var(--radius)', 
       boxShadow: 'var(--shadow)', 
@@ -26,27 +26,23 @@ export default function ProductCard({ product }) {
       display: 'flex', 
       flexDirection: 'column' 
     }}>
-      <Link to={`/product/${product.id}`} style={{ aspectRatio: '1', background: '#fff', display: 'block', overflow: 'hidden' }}>
+      <Link to={`/product/${product.id}`} style={{ aspectRatio: '1', background: 'var(--bg)', display: 'block' }}>
         <img 
           src={imageSrc} 
           alt={product.title} 
           onError={() => setImgError(true)}
-          referrerPolicy="no-referrer"
           style={{ 
             width: '100%', 
             height: '100%', 
-            objectFit: 'contain', /* Contain, чтобы фигурки/монеты не обрезались */
-            padding: '10px',
-            transition: 'transform 0.3s ease'
+            objectFit: 'cover' 
           }} 
-          className="product-image"
           loading="lazy" 
         />
       </Link>
       
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
         <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          {product.category === 'vinyl' ? 'Винил' : product.category === 'figures' ? 'Фигурки' : 'Монеты'}
+          {product.category === 'vinyl' ? 'Винил' : product.category === 'figures' ? 'Фигурки' : product.category === 'coins' ? 'Монеты' : 'Медали'}
         </span>
 
         <Link to={`/product/${product.id}`} style={{ 
@@ -80,12 +76,6 @@ export default function ProductCard({ product }) {
           </button>
         </div>
       </div>
-
-      <style>{`
-        .product-card:hover .product-image {
-          transform: scale(1.05);
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
   <head>
     <meta charset="utf-8">
-    <title>Редирект...</title>
+    <title>Переход...</title>
     <script type="text/javascript">
-      // Этот скрипт берет путь из адресной строки, кодирует его и отправляет на главную
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      // GitHub Pages отдаёт этот файл (404.html) при запросе любого несуществующего
+      // файла. Так как приложение работает на HashRouter, корректный адрес любой
+      // страницы начинается с "#/". Здесь мы вытаскиваем путь, введённый
+      // пользователем (внутри "/collectibles-shop/..."), и переносим его в хэш,
+      // чтобы после обновления страницы открывался тот же экран, а не 404.
+      (function () {
+        var location = window.location;
+        var base = '/collectibles-shop/';
+        var current = location.pathname;
+        var rest = '';
+
+        // Убираем из пути всё, что идёт до префикса приложения.
+        if (current.indexOf(base) === 0) {
+          rest = current.slice(base.length);
+        } else {
+          rest = current.replace(/^\//, '');
+        }
+
+        // Убираем ведущий "/" у внутренней части.
+        rest = rest.replace(/^\//, '');
+
+        // Корневой запрос (сам сайт) -> главная страница.
+        if (!rest || rest === 'index.html') {
+          location.href = base + '#/';
+          return;
+        }
+
+        // Остальные пути -> соответствующий экран внутри приложения.
+        location.href = base + '#/' + rest + location.search;
+      })();
     </script>
   </head>
   <body>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { CartProvider } from './context/CartContext.jsx';
@@ -12,7 +12,7 @@ document.body.className = localStorage.getItem('theme') === 'tno' ? 'theme-tno' 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <UIProvider>
         <AuthProvider>
           <CartProvider>
@@ -20,6 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </CartProvider>
         </AuthProvider>
       </UIProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );

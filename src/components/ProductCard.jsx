@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
-import { translateTitle, translateCategory } from '../utils/translate.js';
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart();
@@ -11,7 +10,7 @@ export default function ProductCard({ product }) {
 
   const handleAdd = () => {
     addItem(product);
-    showToast(`«${translateTitle(product.title)}» добавлен в корзину`);
+    showToast(`«${product.title}» добавлен в корзину`);
   };
 
   const imageSrc = imgError || !product.thumbnail 
@@ -19,7 +18,7 @@ export default function ProductCard({ product }) {
     : product.thumbnail;
 
   return (
-    <div style={{ 
+    <div className="product-card" style={{ 
       background: 'var(--surface)', 
       borderRadius: 'var(--radius)', 
       boxShadow: 'var(--shadow)', 
@@ -27,24 +26,27 @@ export default function ProductCard({ product }) {
       display: 'flex', 
       flexDirection: 'column' 
     }}>
-      <Link to={`/product/${product.id}`} style={{ aspectRatio: '1', background: '#f0f0f5', display: 'block' }}>
+      <Link to={`/product/${product.id}`} style={{ aspectRatio: '1', background: '#fff', display: 'block', overflow: 'hidden' }}>
         <img 
           src={imageSrc} 
-          alt={translateTitle(product.title)} 
+          alt={product.title} 
           onError={() => setImgError(true)}
           referrerPolicy="no-referrer"
           style={{ 
             width: '100%', 
             height: '100%', 
-            objectFit: 'cover' 
+            objectFit: 'contain', /* Contain, чтобы фигурки/монеты не обрезались */
+            padding: '10px',
+            transition: 'transform 0.3s ease'
           }} 
+          className="product-image"
           loading="lazy" 
         />
       </Link>
       
-      <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          {translateCategory(product.category)}
+      <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
+        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          {product.category === 'vinyl' ? 'Винил' : product.category === 'figures' ? 'Фигурки' : 'Монеты'}
         </span>
 
         <Link to={`/product/${product.id}`} style={{ 
@@ -55,9 +57,10 @@ export default function ProductCard({ product }) {
           WebkitLineClamp: 2, 
           WebkitBoxOrient: 'vertical', 
           overflow: 'hidden',
-          minHeight: '2.6em'
+          minHeight: '2.6em',
+          color: 'var(--text)'
         }}>
-          {translateTitle(product.title)}
+          {product.title}
         </Link>
         
         <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
@@ -66,7 +69,7 @@ export default function ProductCard({ product }) {
         
         <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
           <strong style={{ color: 'var(--primary)', fontSize: '1.1rem' }}>
-            {Math.round(product.price * 90)} ₽
+            {product.price.toLocaleString('ru-RU')} ₽
           </strong>
           <button 
             onClick={handleAdd} 
@@ -77,6 +80,12 @@ export default function ProductCard({ product }) {
           </button>
         </div>
       </div>
+
+      <style>{`
+        .product-card:hover .product-image {
+          transform: scale(1.05);
+        }
+      `}</style>
     </div>
   );
 }

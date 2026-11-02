@@ -29,14 +29,11 @@ jobs:
         with:
           node-version: lts/*
           cache: 'npm'
-          cache-dependency-path: 'collectibles-shop/package-lock.json'
       
       - name: Install dependencies
-        working-directory: ./collectibles-shop
         run: npm install
       
       - name: Build
-        working-directory: ./collectibles-shop
         run: npm run build
       
       - name: Setup Pages
@@ -45,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './collectibles-shop/dist'
+          path: './dist'
           
       - name: Deploy to GitHub Pages
         id: deployment

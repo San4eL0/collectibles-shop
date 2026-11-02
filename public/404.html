@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <title>Редирект...</title>
     <script type="text/javascript">
-      // Скрипт перенаправляет пользователя обратно на главную страницу
-      // с сохранением правильного пути (нужно для работы React Router)
+      // Этот скрипт берет путь из адресной строки, кодирует его и отправляет на главную
       var pathSegmentsToKeep = 1;
-
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +

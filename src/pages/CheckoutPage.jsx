@@ -20,6 +20,22 @@ export default function CheckoutPage() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
+  // Функция маски телефона
+  const formatPhone = (value) => {
+    let digits = value.replace(/\D/g, '');
+    if (!digits) return '';
+    if (digits[0] === '8') digits = '7' + digits.slice(1);
+    if (digits[0] !== '7') digits = '7' + digits;
+    
+    let formatted = '+7';
+    if (digits.length > 1) formatted += ` (${digits.slice(1, 4)}`;
+    if (digits.length > 4) formatted += `) ${digits.slice(4, 7)}`;
+    if (digits.length > 7) formatted += `-${digits.slice(7, 9)}`;
+    if (digits.length > 9) formatted += `-${digits.slice(9, 11)}`;
+    
+    return formatted;
+  };
+
   if (!items.length && !submitted) {
     return (
       <div className="container" style={{ paddingTop: '24px' }}>
@@ -33,7 +49,8 @@ export default function CheckoutPage() {
     const newErrors = {};
     if (!form.name.trim()) newErrors.name = 'Укажите имя';
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = 'Некорректный email';
-    if (!form.phone.trim() || form.phone.replace(/\D/g, '').length < 10) newErrors.phone = 'Некорректный телефон';
+    // Проверка на 11 цифр (7 + 10)
+    if (!form.phone.trim() || form.phone.replace(/\D/g, '').length !== 11) newErrors.phone = 'Введите полный номер (11 цифр)';
     if (!form.address.trim()) newErrors.address = 'Укажите адрес доставки';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -74,7 +91,7 @@ export default function CheckoutPage() {
           if (errors[name]) setErrors({ ...errors, [name]: null });
         }}
         placeholder={placeholder}
-        style={{ padding: '12px', borderRadius: '8px', border: `1px solid ${errors[name] ? 'var(--error)' : 'var(--border)'}` }}
+        style={{ padding: '12px', borderRadius: '8px', border: `1px solid ${errors[name] ? 'var(--error)' : 'var(--border)'}`, background: 'var(--bg)', color: 'var(--text)' }}
       />
       {errors[name] && <span style={{ color: 'var(--error)', fontSize: '0.8rem' }}>{errors[name]}</span>}
     </label>
@@ -89,7 +106,24 @@ export default function CheckoutPage() {
           <h2 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Данные получателя</h2>
           {field('Имя и фамилия *', 'name', 'text', 'Иван Иванов')}
           {field('Email *', 'email', 'email', 'ivan@example.com')}
-          {field('Телефон *', 'phone', 'tel', '+7 (900) 000-00-00')}
+          
+          {/* Специальное поле для телефона с маской */}
+          <label style={{ display: 'grid', gap: '6px' }}>
+            <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Телефон *</span>
+            <input
+              type="tel"
+              value={form.phone}
+              onChange={(e) => {
+                const formatted = formatPhone(e.target.value);
+                setForm({ ...form, phone: formatted });
+                if (errors.phone) setErrors({ ...errors, phone: null });
+              }}
+              placeholder="+7 (900) 000-00-00"
+              style={{ padding: '12px', borderRadius: '8px', border: `1px solid ${errors.phone ? 'var(--error)' : 'var(--border)'}`, background: 'var(--bg)', color: 'var(--text)' }}
+            />
+            {errors.phone && <span style={{ color: 'var(--error)', fontSize: '0.8rem' }}>{errors.phone}</span>}
+          </label>
+
           {field('Адрес доставки *', 'address', 'text', 'Город, улица, дом, квартира')}
           
           <button type="submit" className="btn btn-primary" style={{ marginTop: '8px' }}>

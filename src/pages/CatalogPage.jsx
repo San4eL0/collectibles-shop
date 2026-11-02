@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { fetchApi } from '../services/api';
 import { useDebounce } from '../hooks/useDebounce.js';
@@ -19,7 +19,9 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const [filters, setFilters] = useState({ maxPrice: 500000, minRating: 0 });
+  // Фильтры
+  const [maxPrice, setMaxPrice] = useState(1000000); // По умолчанию миллион
+  const [minRating, setMinRating] = useState(0);
   const [sort, setSort] = useState('default');
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function CatalogPage() {
     setError(null);
     
     const apiCat = category ? CAT_MAP[category] : null;
-    let url = '/products?limit=194'; // Загружаем все доступные товары
+    let url = '/products?limit=194';
     
     if (debouncedQ) {
       url = `/products/search?q=${debouncedQ}&limit=194`;
@@ -50,15 +52,33 @@ export default function CatalogPage() {
     return () => { isMounted = false; };
   }, [category, debouncedQ]);
 
+  // Вычисляем самую высокую цену в текущей категории для ползунка
+  const absoluteMaxPrice = useMemo(() => {
+    if (!products.length) return 100000;
+    const max = Math.max(...products.map(p => Math.round(p.price * 90)));
+    return Math.ceil(max / 1000) * 1000; // Округляем до тысяч вверх
+  }, [products]);
+
+  // Если сменилась категория, сбрасываем ползунок на максимум
+  useEffect(() => {
+    setMaxPrice(absoluteMaxPrice);
+    setMinRating(0);
+  }, [absoluteMaxPrice]);
+
   // Клиентская фильтрация и сортировка
-  const filteredProducts = products
-    .filter((p) => p.price * 90 <= filters.maxPrice && (p.rating || 0) >= filters.minRating)
-    .sort((a, b) => {
-      if (sort === 'price-asc') return a.price - b.price;
-      if (sort === 'price-desc') return b.price - a.price;
-      if (sort === 'rating-desc') return (b.rating || 0) - (a.rating || 0);
-      return 0;
-    });
+  const filteredProducts = useMemo(() => {
+    return products
+      .filter((p) => {
+        const rubPrice = Math.round(p.price * 90);
+        return rubPrice <= maxPrice && (p.rating || 0) >= minRating;
+      })
+      .sort((a, b) => {
+        if (sort === 'price-asc') return a.price - b.price;
+        if (sort === 'price-desc') return b.price - a.price;
+        if (sort === 'rating-desc') return (b.rating || 0) - (a.rating || 0);
+        return 0;
+      });
+  }, [products, maxPrice, minRating, sort]);
 
   return (
     <div className="container" style={{ paddingTop: '24px' }}>
@@ -81,17 +101,22 @@ export default function CatalogPage() {
 
       <div style={{ display: 'grid', gap: '24px' }} className="catalog-layout">
         <FilterPanel 
-          filters={filters} 
-          onChange={(patch) => setFilters((f) => ({ ...f, ...patch }))} 
-          onReset={() => setFilters({ maxPrice: 50000, minRating: 0 })} 
+          maxPrice={maxPrice}
+          absoluteMaxPrice={absoluteMaxPrice}
+          minRating={minRating}
+          onChangePrice={setMaxPrice}
+          onChangeRating={setMinRating}
+          onReset={() => { setMaxPrice(absoluteMaxPrice); setMinRating(0); }} 
         />
         
         <div>
           {loading && <Loader />}
           {error && <Alert type="error" message={error} />}
+          
           {!loading && !error && filteredProducts.length === 0 && (
-            <Alert type="info" message="По вашему запросу ничего не найдено. Попробуйте сбросить фильтры." />
+            <Alert type="info" message="По вашему запросу ничего не найдено. Попробуйте сбросить фильтры или увеличить цену." />
           )}
+          
           {!loading && !error && filteredProducts.length > 0 && (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px' }}>
               {filteredProducts.map((p) => <ProductCard key={p.id} product={p} />)}

@@ -2,12 +2,14 @@ export default function FilterPanel({
   maxPrice, 
   absoluteMaxPrice, 
   minRating, 
+  era,
   onChangePrice, 
   onChangeRating, 
+  onChangeEra,
   onReset 
 }) {
   return (
-    <aside style={{ background: 'var(--surface)', padding: '20px', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow)', display: 'grid', gap: '16px', alignSelf: 'start' }}>
+    <aside style={{ background: 'var(--surface)', padding: '20px', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow)', display: 'grid', gap: '20px' }}>
       <h3 style={{ fontSize: '1.1rem' }}>Фильтры</h3>
 
       <label style={{ display: 'grid', gap: '8px' }}>
@@ -25,6 +27,22 @@ export default function FilterPanel({
           style={{ width: '100%', accentColor: 'var(--primary)' }} 
         />
       </label>
+
+      <div style={{ display: 'grid', gap: '8px' }}>
+        <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Эпоха</span>
+        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+          {['all', 'modern', 'vintage'].map((e) => (
+            <button 
+              key={e}
+              onClick={() => onChangeEra(e)}
+              className={`btn ${era === e ? 'btn-primary' : 'btn-outline'}`}
+              style={{ padding: '4px 10px', fontSize: '0.8rem', minHeight: '32px' }}
+            >
+              {e === 'all' ? 'Все' : e === 'modern' ? 'Современные' : 'Раритетные'}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <label style={{ display: 'grid', gap: '8px' }}>
         <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Мин. рейтинг</span>

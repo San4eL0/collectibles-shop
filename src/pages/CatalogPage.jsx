@@ -115,7 +115,7 @@ export default function CatalogPage() {
           )}
           
           {!loading && !error && filteredProducts.length > 0 && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
+            <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
               {filteredProducts.map((p) => <ProductCard key={p.id} product={p} />)}
             </div>
           )}

@@ -81,3 +81,45 @@ body.theme-tno .btn, body.theme-tno .card, body.theme-tno input, body.theme-tno 
 }
 body.theme-tno header { border-bottom: 2px solid var(--primary) !important; }
 body.theme-tno footer { border-top: 2px solid var(--border) !important; background: var(--surface) !important; }
+
+/* =========================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ
+   ========================================= */
+.header-row { flex-wrap: nowrap; }
+
+/* На телефоне поиск уходит на свою полную строку поверх шапки */
+@media (max-width: 640px) {
+  .header-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .header-search {
+    flex: 1 1 100% !important;
+    order: 3;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .container { padding: 0 12px; }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .form-row-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  main { padding-top: 16px !important; }
+}
+
+@media (max-width: 380px) {
+  .header-actions .btn-outline { padding: 4px 8px; font-size: 0.75rem; }
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

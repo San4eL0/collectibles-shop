@@ -32,17 +32,17 @@ export default function Header() {
 
   return (
     <header style={{ background: 'var(--surface)', borderBottom: '1px solid var(--border)', position: 'sticky', top: 0, zIndex: 100 }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 16px', flexWrap: 'wrap' }}>
-        <Link to="/" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--primary)' }}>🎭 Коллекционер</Link>
+      <div className="container header-row" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px' }}>
+        <Link to="/" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--primary)', whiteSpace: 'nowrap' }}>🎭 Коллекционер</Link>
         
-        <form onSubmit={handleSearch} style={{ flex: '1 1 200px', display: 'flex' }}>
-          <input type="search" placeholder="Поиск..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '8px 0 0 8px', background: 'var(--bg)', color: 'var(--text)' }} />
+        <form onSubmit={handleSearch} className="header-search" style={{ flex: '1 1 200px', display: 'flex' }}>
+          <input type="search" placeholder="Поиск..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, minWidth: 0, padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '8px 0 0 8px', background: 'var(--bg)', color: 'var(--text)' }} />
           <button type="submit" className="btn btn-primary" style={{ borderRadius: '0 8px 8px 0' }}>🔍</button>
         </form>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <button onClick={toggleTheme} className="btn btn-outline" style={{ padding: '6px 12px', fontSize: '0.8rem', minHeight: '36px', borderRadius: '8px' }} title="Сменить тему">
-            {theme === 'light' ? 'TNO MODE' : 'STANDARD MODE'}
+        <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <button onClick={toggleTheme} className="btn btn-outline" style={{ padding: '6px 12px', fontSize: '0.8rem', minHeight: '36px', borderRadius: '8px', whiteSpace: 'nowrap' }} title="Сменить тему">
+            {theme === 'light' ? '🌙 Тёмная' : '☀️ Светлая'}
           </button>
 
           <Link to="/cart" style={{ position: 'relative', fontSize: '1.2rem' }}>🛒
@@ -51,11 +51,11 @@ export default function Header() {
 
           {isAuthenticated ? (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <Link to="/profile" style={{ fontWeight: 600, color: 'var(--text)' }}>{user?.firstName || 'Профиль'}</Link>
-              <button onClick={logout} style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Выйти</button>
+              <Link to="/profile" style={{ fontWeight: 600, color: 'var(--text)', whiteSpace: 'nowrap' }}>{user?.firstName || 'Профиль'}</Link>
+              <button onClick={logout} style={{ color: 'var(--text-muted)', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>Выйти</button>
             </div>
           ) : (
-            <Link to="/login" className="btn btn-outline" style={{ padding: '6px 12px' }}>Войти</Link>
+            <Link to="/login" className="btn btn-outline" style={{ padding: '6px 12px', whiteSpace: 'nowrap' }}>Войти</Link>
           )}
         </div>
       </div>

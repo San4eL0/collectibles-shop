@@ -76,7 +76,7 @@ export default function HomePage() {
         {loading && <Loader />}
         {error && <Alert type="error" message={error} />}
         {!loading && !error && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px' }}>
+          <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px' }}>
             {products.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
         )}

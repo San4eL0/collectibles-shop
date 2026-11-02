@@ -62,7 +62,7 @@ export default function RegisterPage() {
       <h1 style={{ marginBottom: '24px' }}>Регистрация</h1>
       
       <form onSubmit={handleSubmit} style={{ background: 'var(--surface)', borderRadius: '12px', padding: '24px', boxShadow: 'var(--shadow)', display: 'grid', gap: '16px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+        <div className="form-row-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
           {field('Имя', 'firstName')}
           {field('Фамилия', 'lastName')}
         </div>

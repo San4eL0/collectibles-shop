@@ -1,4 +1,3 @@
-// Словарь для перевода товаров из DummyJSON на русский
 const translationDict = {
   // Категории
   "fragrances": "Парфюмерия",
@@ -7,8 +6,21 @@ const translationDict = {
   "womens-bags": "Женские сумки",
   "home-decoration": "Декор для дома",
   "groceries": "Продукты",
+  "mobile-accessories": "Мобильные аксессуары",
+  "kitchen-accessories": "Кухонные принадлежности",
+  "skin-care": "Уход за кожей",
+  "beauty": "Красота",
+  "sunglasses": "Солнцезащитные очки",
+  "sports-accessories": "Спортивные аксессуары",
+  "mens-shirts": "Мужские рубашки",
+  "mens-shoes": "Мужская обувь",
+  "womens-dresses": "Женские платья",
+  "womens-shoes": "Женская обувь",
+  "womens-jewellery": "Женские украшения",
+  "womens-watches": "Женские часы",
+  "tops": "Топы",
 
-  // Товары (основные из выдачи)
+  // Товары
   "Amazon Echo Plus": "Умная колонка Amazon Echo Plus",
   "Huawei Matebook X Pro": "Ноутбук Huawei Matebook X Pro",
   "Rolex Cellini Date Black Dial": "Часы Rolex Cellini Date (черный циферблат)",
@@ -41,10 +53,47 @@ const translationDict = {
   "Khaki Utility Pant": "Брюки-карго (хаки)",
   "Blue Denim Jacket": "Джинсовая куртка (синяя)",
   "Grey Hoodie": "Серое худи",
-  "Running Shoes": "Беговые кроссовки"
+  "Running Shoes": "Беговые кроссовки",
+  "Annibale Colombo Sofa": "Диван Annibale Colombo",
+  "Knives": "Набор ножей",
+  "Notebook": "Блокнот",
+  "Apple": "Яблоко",
+  "Beef Steak": "Стейк из говядины",
+  "Cat Food": "Кошачий корм",
+  "Chicken Meat": "Куриное мясо",
+  "Cooking Oil": "Масло для готовки",
+  "Cucumber": "Огурец",
+  "Dog Food": "Собачий корм",
+  "Eggs": "Яйца",
+  "Fish Steak": "Стейк из рыбы",
+  "Green Bell Pepper": "Зеленый болгарский перец",
+  "Green Chili Pepper": "Зеленый перец чили",
+  "Honey Jar": "Банка меда",
+  "Ice Cream": "Мороженое",
+  "Juice": "Сок",
+  "Lemon": "Лимон",
+  "Milk": "Молоко",
+  "Nescafe Coffee": "Кофе Nescafe",
+  "Potatoes": "Картофель",
+  "Protein Powder": "Протеиновый порошок",
+  "Red Onions": "Красный лук",
+  "Rice": "Рис",
+  "Soft Drinks": "Безалкогольные напитки",
+  "Strawberry": "Клубника",
+  "Tissue Paper Box": "Коробка бумажных салфеток",
+  "Blue Lipstick": "Синяя помада",
+  "Essence Mascara Lash Princess": "Тушь для ресниц Essence",
+  "Eyeshadow Palette with Mirror": "Палетка теней с зеркалом",
+  "Powder Canister": "Пудра",
+  "Red Lipstick": "Красная помада",
+  "Red Nail Polish": "Красный лак для ногтей",
+  "Chicken Curry": "Куриное карри",
+  "Gulab Jamun": "Гулаб джамун",
+  "Pasta": "Паста",
+  "Pizza": "Пицца",
+  "Vegetable Soup": "Овощной суп"
 };
 
-// Словарь для перевода описаний (общие фразы)
 const descriptionDict = {
   "The Essence of the Fragrance": "Суть аромата",
   "This is a high quality product": "Это высококачественный товар",
@@ -57,43 +106,27 @@ const descriptionDict = {
   "The perfect blend of style and functionality": "Идеальное сочетание стиля и функциональности"
 };
 
-// Функция перевода названия
 export const translateTitle = (title) => {
   if (!title) return "Без названия";
-  
-  // Ищем точное совпадение в словаре
   if (translationDict[title]) return translationDict[title];
-  
-  // Если точного совпадения нет, ищем частичное
   for (const [eng, rus] of Object.entries(translationDict)) {
-    if (title.includes(eng)) {
-      return title.replace(eng, rus);
-    }
+    if (title.includes(eng)) return title.replace(eng, rus);
   }
-  
-  // Если перевода нет, возвращаем оригинал (или можно написать "Товар")
   return title; 
 };
 
-// Функция перевода категорий
 export const translateCategory = (cat) => {
   return translationDict[cat] || cat;
 };
 
-// Функция перевода описаний
 export const translateDescription = (desc) => {
   if (!desc) return "Описание отсутствует. Отличный выбор для настоящего коллекционера!";
-  
-  // Если описание длинное, берем первые предложения и переводим
   let translated = desc;
   for (const [eng, rus] of Object.entries(descriptionDict)) {
     translated = translated.replace(new RegExp(eng, 'gi'), rus);
   }
-  
-  // Если текст остался на английском, добавляем красивую заглушку
   if (/[a-zA-Z]/.test(translated)) {
     return translated + " (Отличный товар для вашей коллекции. Подробные характеристики уточняйте у оператора.)";
   }
-  
   return translated;
 };

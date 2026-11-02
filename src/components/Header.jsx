@@ -15,7 +15,6 @@ export default function Header() {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   
-  // Логика смены темы
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'tno' : 'light';
@@ -41,9 +40,9 @@ export default function Header() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           
-          {/* Кнопка смены темы */}
-          <button onClick={toggleTheme} style={{ fontSize: '1.2rem', color: 'var(--text)' }} title="Сменить тему">
-            {theme === 'light' ? '📺' : '☀️'}
+          {/* Переключатель стиля */}
+          <button onClick={toggleTheme} className="btn btn-outline" style={{ padding: '6px 12px', fontSize: '0.8rem', minHeight: '36px', borderRadius: '8px' }} title="Сменить тему">
+            {theme === 'light' ? 'TNO MODE' : 'STANDARD MODE'}
           </button>
 
           <Link to="/cart" style={{ position: 'relative', fontSize: '1.2rem' }}>🛒

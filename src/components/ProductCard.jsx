@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { assetUrl } from '../utils/assetUrl.js';
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart();
@@ -30,7 +31,7 @@ export default function ProductCard({ product }) {
       }}
       >
         <img 
-          src={product.thumbnail} 
+          src={assetUrl(product.thumbnail)} 
           alt={product.title}
           style={{ 
             width: '100%', 

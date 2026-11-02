@@ -4,6 +4,7 @@ import { fetchApi } from '../services/api';
 import { useCart } from '../context/CartContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
 import { translateTitle, translateCategory, translateDescription } from '../utils/translate.js';
+import { assetUrl } from '../utils/assetUrl.js';
 import Loader from '../components/Loader.jsx';
 import Alert from '../components/Alert.jsx';
 
@@ -52,7 +53,7 @@ export default function ProductPage() {
 
   const imageSrc = imgError || !product.thumbnail 
     ? 'https://placehold.co/600x600/e5e0ec/6b4fbb?text=Нет+фото' 
-    : product.thumbnail;
+    : assetUrl(product.thumbnail);
 
   return (
     <div className="container" style={{ paddingTop: '24px' }}>

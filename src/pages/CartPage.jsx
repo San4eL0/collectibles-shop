@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { translateTitle } from '../utils/translate.js';
+import { assetUrl } from '../utils/assetUrl.js';
 import Alert from '../components/Alert.jsx';
 
 export default function CartPage() {
@@ -35,7 +36,7 @@ export default function CartPage() {
                 background: 'var(--surface)', borderRadius: '12px', padding: '16px', boxShadow: 'var(--shadow)',
               }}>
                 <img 
-                  src={item.thumbnail || 'https://placehold.co/80x80?text=No+Img'} 
+                  src={assetUrl(item.thumbnail) || 'https://placehold.co/80x80?text=No+Img'} 
                   alt={translateTitle(item.title)} 
                   style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px' }} 
                 />

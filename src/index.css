@@ -53,29 +53,6 @@ body.theme-tno * {
   font-family: 'Aldrich', sans-serif !important;
 }
 
-/* Легкие горизонтальные полосы */
-body.theme-tno::after {
-  content: " ";
-  display: block;
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
-  background-size: 100% 4px;
-  z-index: 9999;
-  pointer-events: none; 
-}
-
-/* Легкая виньетка */
-body.theme-tno::before {
-  content: " ";
-  display: block;
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.4) 100%);
-  z-index: 9998;
-  pointer-events: none;
-}
-
 body.theme-tno .btn, body.theme-tno .card, body.theme-tno input, body.theme-tno select, body.theme-tno .container > div {
   border-radius: 0 !important;
 }

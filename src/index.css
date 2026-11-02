@@ -32,12 +32,12 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
    ТЕМА TNO (Смягченный CRT-МОНИТОР)
    ========================================= */
 body.theme-tno {
-  --primary: #5cb8b2;      /* Мягкий бирюзовый */
+  --primary: #5cb8b2;      
   --primary-dark: #3d8c87; 
-  --accent: #d96161;       /* Приглушенный красный */
-  --bg: #12161c;           /* Глубокий темно-синий/серый */
-  --surface: #1a2028;      /* Чуть светлее для карточек */
-  --text: #d1cdc4;         /* Песочно-серый текст */
+  --accent: #d96161;       
+  --bg: #12161c;           
+  --surface: #1a2028;      
+  --text: #d1cdc4;         
   --text-muted: #7a8691;
   --border: #2a3540;
   --success: #6ee7b7;
@@ -48,29 +48,26 @@ body.theme-tno {
   text-shadow: 0 0 1px rgba(209, 205, 196, 0.2);
 }
 
-/* Очень легкий эффект старого телевизора */
+/* Легкие горизонтальные полосы старого телевизора */
 body.theme-tno::after {
   content: " ";
   display: block;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 50%); /* Еле заметные полосы */
-  background-size: 100% 6px;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
+  background-size: 100% 4px;
   z-index: 9999;
   pointer-events: none; 
 }
 
-/* Виньетка (затемнение по краям) для эффекта кинескопа */
+/* Эффект выпуклого кинескопа (затемнение по краям) */
 body.theme-tno::before {
   content: " ";
   display: block;
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.4) 100%);
+  background: radial-gradient(circle, transparent 55%, rgba(0,0,0,0.6) 100%);
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.8); /* Внутренняя тень для объема */
   z-index: 9998;
   pointer-events: none;
 }
@@ -80,3 +77,4 @@ body.theme-tno .btn, body.theme-tno .card, body.theme-tno input, body.theme-tno 
   border-radius: 0 !important;
 }
 body.theme-tno header { border-bottom: 2px solid var(--primary) !important; }
+body.theme-tno footer { border-top: 2px solid var(--border) !important; }

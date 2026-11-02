@@ -11,36 +11,6 @@ export default function ProductCard({ product }) {
     showToast(`«${product.title}» добавлен в корзину`);
   };
 
-  // Выбираем эмодзи и цвет в зависимости от категории
-  let emoji = '📦';
-  let bgColor = '#e5e0ec'; // Стандартный светлый фон
-  let textColor = '#6b4fbb';
-
-  if (product.category === 'vinyl') {
-    emoji = '💿';
-    bgColor = '#2a1b38'; // Темно-фиолетовый
-    textColor = '#e8b84b';
-  } else if (product.category === 'figures') {
-    emoji = '🗿';
-    bgColor = '#1b2a38'; // Темно-синий
-    textColor = '#5cb8b2';
-  } else if (product.category === 'coins') {
-    emoji = '🪙';
-    bgColor = '#382e1b'; // Темно-золотой
-    textColor = '#f8d66d';
-  } else if (product.category === 'medals') {
-    emoji = '🎖️';
-    bgColor = '#381b1b'; // Темно-красный
-    textColor = '#ff6b6b';
-  }
-
-  const categoryName = {
-    vinyl: 'Винил',
-    figures: 'Фигурки',
-    coins: 'Монеты',
-    medals: 'Медали'
-  }[product.category] || 'Товар';
-
   return (
     <div style={{ 
       background: 'var(--surface)', 
@@ -51,25 +21,27 @@ export default function ProductCard({ product }) {
       flexDirection: 'column' 
     }}>
       
-      {/* Вместо картинки — красивый CSS-блок с эмодзи */}
+      {/* Картинка товара */}
       <Link to={`/product/${product.id}`} style={{ 
+        display: 'block', 
+        overflow: 'hidden',
         aspectRatio: '1', 
-        background: bgColor, 
-        display: 'flex', 
-        flexDirection: 'column',
-        alignItems: 'center', 
-        justifyContent: 'center',
-        color: textColor,
         textDecoration: 'none',
-        transition: 'filter 0.3s'
       }}
-      onMouseEnter={(e) => e.currentTarget.style.filter = 'brightness(1.2)'}
-      onMouseLeave={(e) => e.currentTarget.style.filter = 'brightness(1)'}
       >
-        <span style={{ fontSize: '4rem', marginBottom: '8px' }}>{emoji}</span>
-        <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>
-          {categoryName}
-        </span>
+        <img 
+          src={product.thumbnail} 
+          alt={product.title}
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover', 
+            display: 'block', 
+            transition: 'transform 0.3s' 
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        />
       </Link>
       
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>

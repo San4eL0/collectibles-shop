@@ -19,7 +19,7 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const [filters, setFilters] = useState({ maxPrice: 50000, minRating: 0 });
+  const [filters, setFilters] = useState({ maxPrice: 500000, minRating: 0 });
   const [sort, setSort] = useState('default');
 
   useEffect(() => {

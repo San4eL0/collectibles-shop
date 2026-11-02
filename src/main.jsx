@@ -7,6 +7,9 @@ import { CartProvider } from './context/CartContext.jsx';
 import { UIProvider } from './context/UIContext.jsx';
 import './index.css';
 
+// Восстанавливаем тему из localStorage перед рендером
+document.body.className = localStorage.getItem('theme') === 'tno' ? 'theme-tno' : '';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>

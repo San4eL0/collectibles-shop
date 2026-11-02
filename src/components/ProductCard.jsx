@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
@@ -6,16 +5,41 @@ import { useUI } from '../context/UIContext.jsx';
 export default function ProductCard({ product }) {
   const { addItem } = useCart();
   const { showToast } = useUI();
-  const [imgError, setImgError] = useState(false);
 
   const handleAdd = () => {
     addItem(product);
     showToast(`«${product.title}» добавлен в корзину`);
   };
 
-  const imageSrc = imgError || !product.thumbnail 
-    ? 'https://placehold.co/400x400/12161c/5cb8b2?text=No+Image' 
-    : product.thumbnail;
+  // Выбираем эмодзи и цвет в зависимости от категории
+  let emoji = '📦';
+  let bgColor = '#e5e0ec'; // Стандартный светлый фон
+  let textColor = '#6b4fbb';
+
+  if (product.category === 'vinyl') {
+    emoji = '💿';
+    bgColor = '#2a1b38'; // Темно-фиолетовый
+    textColor = '#e8b84b';
+  } else if (product.category === 'figures') {
+    emoji = '🗿';
+    bgColor = '#1b2a38'; // Темно-синий
+    textColor = '#5cb8b2';
+  } else if (product.category === 'coins') {
+    emoji = '🪙';
+    bgColor = '#382e1b'; // Темно-золотой
+    textColor = '#f8d66d';
+  } else if (product.category === 'medals') {
+    emoji = '🎖️';
+    bgColor = '#381b1b'; // Темно-красный
+    textColor = '#ff6b6b';
+  }
+
+  const categoryName = {
+    vinyl: 'Винил',
+    figures: 'Фигурки',
+    coins: 'Монеты',
+    medals: 'Медали'
+  }[product.category] || 'Товар';
 
   return (
     <div style={{ 
@@ -26,25 +50,29 @@ export default function ProductCard({ product }) {
       display: 'flex', 
       flexDirection: 'column' 
     }}>
-      <Link to={`/product/${product.id}`} style={{ aspectRatio: '1', background: 'var(--bg)', display: 'block' }}>
-        <img 
-          src={imageSrc} 
-          alt={product.title} 
-          onError={() => setImgError(true)}
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover' 
-          }} 
-          loading="lazy" 
-        />
+      
+      {/* Вместо картинки — красивый CSS-блок с эмодзи */}
+      <Link to={`/product/${product.id}`} style={{ 
+        aspectRatio: '1', 
+        background: bgColor, 
+        display: 'flex', 
+        flexDirection: 'column',
+        alignItems: 'center', 
+        justifyContent: 'center',
+        color: textColor,
+        textDecoration: 'none',
+        transition: 'filter 0.3s'
+      }}
+      onMouseEnter={(e) => e.currentTarget.style.filter = 'brightness(1.2)'}
+      onMouseLeave={(e) => e.currentTarget.style.filter = 'brightness(1)'}
+      >
+        <span style={{ fontSize: '4rem', marginBottom: '8px' }}>{emoji}</span>
+        <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>
+          {categoryName}
+        </span>
       </Link>
       
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
-        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-          {product.category === 'vinyl' ? 'Винил' : product.category === 'figures' ? 'Фигурки' : product.category === 'coins' ? 'Монеты' : 'Медали'}
-        </span>
-
         <Link to={`/product/${product.id}`} style={{ 
           fontWeight: 600, 
           fontSize: '0.95rem', 

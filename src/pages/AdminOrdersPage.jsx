@@ -45,7 +45,7 @@ export default function AdminOrdersPage() {
               <tr key={o.id} style={{ borderTop: '1px solid var(--border)' }}>
                 <td style={{ padding: '12px' }}>#{o.id}</td>
                 <td style={{ padding: '12px' }}>{o.products?.length || 0}</td>
-                <td style={{ padding: '12px' }}>{Math.round((o.total || 0) * 90)} ₽</td>
+                <td style={{ padding: '12px' }}>{Math.round(o.total || 0).toLocaleString('ru-RU')} ₽</td>
                 <td style={{ padding: '12px' }}>
                   <select
                     value={statuses[o.id] || 'processing'}

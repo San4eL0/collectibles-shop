@@ -60,7 +60,7 @@ export default function AdminProductsPage() {
                 <td style={{ padding: '12px' }}>{p.id}</td>
                 <td style={{ padding: '12px', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.title}</td>
                 <td style={{ padding: '12px' }}>{p.category}</td>
-                <td style={{ padding: '12px' }}>{Math.round(p.price * 90)} ₽</td>
+                <td style={{ padding: '12px' }}>{Math.round(p.price).toLocaleString('ru-RU')} ₽</td>
                 <td style={{ padding: '12px' }}>{p.stock}</td>
                 <td style={{ padding: '12px' }}>
                   <div style={{ display: 'flex', gap: '12px' }}>

@@ -85,7 +85,7 @@ export default function ProductPage() {
           </p>
           
           <strong style={{ fontSize: '2rem', color: 'var(--primary)' }}>
-            {Math.round(product.price * 90)} ₽
+            {Math.round(product.price).toLocaleString('ru-RU')} ₽
           </strong>
 
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>

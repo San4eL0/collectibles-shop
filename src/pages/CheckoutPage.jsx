@@ -127,7 +127,7 @@ export default function CheckoutPage() {
           {field('Адрес доставки *', 'address', 'text', 'Город, улица, дом, квартира')}
           
           <button type="submit" className="btn btn-primary" style={{ marginTop: '8px' }}>
-            Подтвердить заказ на {Math.round(totalPrice * 90)} ₽
+            Подтвердить заказ на {Math.round(totalPrice).toLocaleString('ru-RU')} ₽
           </button>
         </form>
 
@@ -139,14 +139,14 @@ export default function CheckoutPage() {
                 <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {translateTitle(item.title)} × {item.quantity}
                 </span>
-                <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>{Math.round(item.price * item.quantity * 90)} ₽</span>
+                <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>{Math.round(item.price * item.quantity).toLocaleString('ru-RU')} ₽</span>
               </div>
             ))}
           </div>
           <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '16px 0' }} />
           <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, fontSize: '1.1rem' }}>
             <span>Итого</span>
-            <span style={{ color: 'var(--primary)' }}>{Math.round(totalPrice * 90)} ₽</span>
+            <span style={{ color: 'var(--primary)' }}>{Math.round(totalPrice).toLocaleString('ru-RU')} ₽</span>
           </div>
         </aside>
       </div>

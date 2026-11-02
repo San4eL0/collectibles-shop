@@ -42,7 +42,7 @@ export default function OrdersPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
               <strong style={{ fontSize: '1.1rem' }}>Заказ #{order.id}</strong>
               <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                {order.products?.length || 0} позиций · {Math.round((order.total || 0) * 90)} ₽
+                {order.products?.length || 0} позиций · {Math.round(order.total || 0).toLocaleString('ru-RU')} ₽
               </span>
             </div>
             
@@ -50,7 +50,7 @@ export default function OrdersPage() {
               {(order.products || []).map((p) => (
                 <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
                   <span>{p.title} × {p.quantity}</span>
-                  <span>{Math.round((p.price || 0) * p.quantity * 90)} ₽</span>
+                  <span>{Math.round((p.price || 0) * p.quantity).toLocaleString('ru-RU')} ₽</span>
                 </div>
               ))}
             </div>

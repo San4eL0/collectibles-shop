@@ -21,6 +21,7 @@ export default function CatalogPage() {
   const [minRating, setMinRating] = useState(0);
   const [era, setEra] = useState('all'); // Фильтр по эпохе
   const [sort, setSort] = useState('default');
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -92,8 +93,18 @@ export default function CatalogPage() {
 
       <div style={{ display: 'grid', gap: '24px', alignItems: 'start' }} className="catalog-layout">
         
+        {/* Мобильная кнопка-спойлер для фильтров */}
+        <button 
+          className="btn btn-outline filters-toggle" 
+          onClick={() => setShowFilters((s) => !s)} 
+          style={{ width: '100%', justifyContent: 'space-between' }}
+        >
+          <span>⚙️ Фильтры</span>
+          <span>{showFilters ? '▲' : '▼'}</span>
+        </button>
+
         {/* Оборачиваем FilterPanel в sticky-контейнер */}
-        <div style={{ position: 'sticky', top: '120px' }}>
+        <div style={{ position: 'sticky', top: '120px' }} className={`filters-panel ${showFilters ? 'open' : ''}`}>
           <FilterPanel 
             maxPrice={maxPrice}
             absoluteMaxPrice={absoluteMaxPrice}

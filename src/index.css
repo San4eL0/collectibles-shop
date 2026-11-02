@@ -86,8 +86,16 @@ body.theme-tno footer { border-top: 2px solid var(--border) !important; backgrou
    МОБИЛЬНАЯ АДАПТАЦИЯ
    ========================================= */
 .header-row { flex-wrap: nowrap; }
+.filters-toggle { display: none; }
 
 /* На телефоне поиск уходит на свою полную строку поверх шапки */
+@media (max-width: 900px) {
+  /* Кнопка-спойлер фильтров на мобильных */
+  .filters-toggle { display: flex; }
+  .filters-panel { display: none; }
+  .filters-panel.open { display: block; }
+}
+
 @media (max-width: 640px) {
   .header-row {
     flex-wrap: wrap;

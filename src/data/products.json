@@ -6,7 +6,7 @@
     "era": "vintage",
     "price": 4500,
     "rating": 4.9,
-    "thumbnail": "💿",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=💿+Pink+Floyd",
     "description": "Легендарный альбом 1973 года. Идеальное состояние, оригинальный конверт.",
     "stock": 5
   },
@@ -17,7 +17,7 @@
     "era": "modern",
     "price": 18500,
     "rating": 5.0,
-    "thumbnail": "🗿",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=🗿+Darth+Vader",
     "description": "Коллекционная фигурка 1/6 масштаба. Высокая детализация, светящийся меч.",
     "stock": 2
   },
@@ -28,7 +28,7 @@
     "era": "vintage",
     "price": 6200,
     "rating": 4.8,
-    "thumbnail": "🪙",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=🪙+Morgan+Dollar",
     "description": "Оригинальная монета из 90% серебра. Отличная сохранность (XF).",
     "stock": 1
   },
@@ -39,7 +39,7 @@
     "era": "vintage",
     "price": 3800,
     "rating": 4.7,
-    "thumbnail": "🎶",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=💿+Michael+Jackson",
     "description": "Самый продаваемый альбом в истории. Переиздание 180 грамм.",
     "stock": 10
   },
@@ -50,7 +50,7 @@
     "era": "modern",
     "price": 8900,
     "rating": 4.6,
-    "thumbnail": "⚔️",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=⚔️+Геральт",
     "description": "Статуэтка из смолы по мотивам игры The Witcher 3. Высота 25 см.",
     "stock": 3
   },
@@ -61,7 +61,7 @@
     "era": "vintage",
     "price": 45000,
     "rating": 5.0,
-    "thumbnail": "👑",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=👑+Николай+II",
     "description": "Подлинная золотая монета 1899 года. Идеальное вложение.",
     "stock": 1
   },
@@ -72,7 +72,7 @@
     "era": "vintage",
     "price": 12500,
     "rating": 5.0,
-    "thumbnail": "🎖️",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=🎖️+За+Отвагу",
     "description": "Оригинальная боевая награда времен ВОВ. С документом.",
     "stock": 1
   },
@@ -83,8 +83,8 @@
     "era": "vintage",
     "price": 15800,
     "rating": 4.9,
-    "thumbnail": "✠",
-    "description": "Оригинальная награда Второй мировой войны. Без клейма.",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=✠+Iron+Cross",
+    "description": "Оригинальная награда Второй мировой войны.",
     "stock": 1
   },
   {
@@ -94,7 +94,7 @@
     "era": "modern",
     "price": 3200,
     "rating": 4.5,
-    "thumbnail": "🤖",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=🤖+Bender",
     "description": "Официальная фигурка робота Бендера. Подвижные конечности.",
     "stock": 8
   },
@@ -105,7 +105,7 @@
     "era": "vintage",
     "price": 5200,
     "rating": 4.9,
-    "thumbnail": "💿",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=💿+The+Beatles",
     "description": "Легендарный альбом 1969 года. Оригинальное издание.",
     "stock": 4
   },
@@ -116,7 +116,7 @@
     "era": "vintage",
     "price": 7500,
     "rating": 4.2,
-    "thumbnail": "🪙",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=🪙+Монеты+СССР",
     "description": "Полная коллекция монет времен СССР в альбоме.",
     "stock": 2
   },
@@ -127,7 +127,7 @@
     "era": "modern",
     "price": 22000,
     "rating": 4.9,
-    "thumbnail": "💍",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=💍+Саурон",
     "description": "Статуэтка Темного Лорда из Властелина Колец. Высота 30 см.",
     "stock": 1
   },
@@ -138,18 +138,18 @@
     "era": "vintage",
     "price": 4800,
     "rating": 4.8,
-    "thumbnail": "🏅",
-    "description": "Юбилейная и оригинальная медаль ВОВ. Отличное состояние.",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=🏅+За+Победу",
+    "description": "Оригинальная медаль ВОВ. Отличное состояние.",
     "stock": 3
   },
   {
     "id": 14,
-    "title": "Современная фигурка Cyberpunk 2077",
+    "title": "Фигурка Cyberpunk 2077 (Ви)",
     "category": "figures",
     "era": "modern",
     "price": 6500,
     "rating": 4.4,
-    "thumbnail": "🦾",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=🦾+Cyberpunk",
     "description": "Фигурка Ви из игры Cyberpunk 2077. Ограниченный тираж.",
     "stock": 5
   },
@@ -160,18 +160,18 @@
     "era": "vintage",
     "price": 9800,
     "rating": 4.7,
-    "thumbnail": "🎖️",
+    "thumbnail": "https://placehold.co/400x400/12161c/5cb8b2?text=🎖️+За+Заслуги",
     "description": "Оригинальная награда времен Афганской войны.",
     "stock": 2
   },
   {
     "id": 16,
-    "title": "Современный винил Daft Punk - Random Access Memories",
+    "title": "Винил Daft Punk - Random Access Memories",
     "category": "vinyl",
     "era": "modern",
     "price": 4100,
     "rating": 4.6,
-    "thumbnail": "🎧",
+    "thumbnail": "https://placehold.co/400x400/1a2028/5cb8b2?text=🎧+Daft+Punk",
     "description": "Современный шедевр электронной музыки на двойном виниле.",
     "stock": 7
   }

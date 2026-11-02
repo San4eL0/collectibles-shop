@@ -14,7 +14,6 @@ export default function ProductCard({ product }) {
     showToast(`«${translateTitle(product.title)}» добавлен в корзину`);
   };
 
-  // Если картинка битая, показываем заглушку
   const imageSrc = imgError || !product.thumbnail 
     ? 'https://placehold.co/400x400/e5e0ec/6b4fbb?text=No+Image' 
     : product.thumbnail;
@@ -28,12 +27,12 @@ export default function ProductCard({ product }) {
       display: 'flex', 
       flexDirection: 'column' 
     }}>
-      {/* Ссылка на товар с картинкой */}
       <Link to={`/product/${product.id}`} style={{ aspectRatio: '1', background: '#f0f0f5', display: 'block' }}>
         <img 
           src={imageSrc} 
           alt={translateTitle(product.title)} 
           onError={() => setImgError(true)}
+          referrerPolicy="no-referrer"
           style={{ 
             width: '100%', 
             height: '100%', 
@@ -43,15 +42,11 @@ export default function ProductCard({ product }) {
         />
       </Link>
       
-      {/* Информация о товаре */}
       <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
-        
-        {/* Категория */}
         <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
           {translateCategory(product.category)}
         </span>
 
-        {/* Название */}
         <Link to={`/product/${product.id}`} style={{ 
           fontWeight: 600, 
           fontSize: '0.95rem', 
@@ -65,12 +60,10 @@ export default function ProductCard({ product }) {
           {translateTitle(product.title)}
         </Link>
         
-        {/* Рейтинг */}
         <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
           ⭐ {product.rating?.toFixed(1) || '—'}
         </span>
         
-        {/* Цена и кнопка */}
         <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
           <strong style={{ color: 'var(--primary)', fontSize: '1.1rem' }}>
             {Math.round(product.price * 90)} ₽

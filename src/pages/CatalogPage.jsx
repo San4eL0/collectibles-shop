@@ -105,6 +105,13 @@ export default function CatalogPage() {
 
         {/* Оборачиваем FilterPanel в sticky-контейнер */}
         <div style={{ position: 'sticky', top: '120px' }} className={`filters-panel ${showFilters ? 'open' : ''}`}>
+          <button 
+            className="btn btn-outline filters-hide" 
+            onClick={() => setShowFilters(false)} 
+            style={{ width: '100%', marginBottom: '12px' }}
+          >
+            ✕ Скрыть фильтры
+          </button>
           <FilterPanel 
             maxPrice={maxPrice}
             absoluteMaxPrice={absoluteMaxPrice}

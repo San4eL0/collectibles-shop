@@ -87,6 +87,7 @@ body.theme-tno footer { border-top: 2px solid var(--border) !important; backgrou
    ========================================= */
 .header-row { flex-wrap: nowrap; }
 .filters-toggle { display: none; }
+.filters-hide { display: none; }
 
 /* На телефоне поиск уходит на свою полную строку поверх шапки */
 @media (max-width: 900px) {
@@ -94,6 +95,7 @@ body.theme-tno footer { border-top: 2px solid var(--border) !important; backgrou
   .filters-toggle { display: flex; }
   .filters-panel { display: none; }
   .filters-panel.open { display: block; }
+  .filters-panel.open .filters-hide { display: flex; }
 }
 
 @media (max-width: 640px) {

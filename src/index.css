@@ -44,8 +44,13 @@ body.theme-tno {
   --error: #f87171;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   
-  font-family: 'Aldrich', sans-serif; 
   text-shadow: 0 0 1px rgba(209, 205, 196, 0.2);
+}
+
+/* Жесткое применение шрифта ко ВСЕМ элементам внутри TNO */
+body.theme-tno, 
+body.theme-tno * {
+  font-family: 'Aldrich', sans-serif !important;
 }
 
 /* Легкие горизонтальные полосы */
@@ -60,7 +65,7 @@ body.theme-tno::after {
   pointer-events: none; 
 }
 
-/* Легкая виньетка (без тяжелых теней, чтобы не ломать картинки) */
+/* Легкая виньетка */
 body.theme-tno::before {
   content: " ";
   display: block;

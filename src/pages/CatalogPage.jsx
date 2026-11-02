@@ -28,12 +28,12 @@ export default function CatalogPage() {
     setError(null);
     
     const apiCat = category ? CAT_MAP[category] : null;
-    let url = '/products?limit=100'; 
+    let url = '/products?limit=194'; // Загружаем все доступные товары
     
     if (debouncedQ) {
-      url = `/products/search?q=${debouncedQ}&limit=100`;
+      url = `/products/search?q=${debouncedQ}&limit=194`;
     } else if (apiCat) {
-      url = `/products/category/${apiCat}?limit=100`;
+      url = `/products/category/${apiCat}?limit=194`;
     }
 
     fetchApi(url)
@@ -70,7 +70,7 @@ export default function CatalogPage() {
         
         <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Сортировка:</span>
-          <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ padding: '8px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+          <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ padding: '8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
             <option value="default">По умолчанию</option>
             <option value="price-asc">Цена: по возрастанию</option>
             <option value="price-desc">Цена: по убыванию</option>

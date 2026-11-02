@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -16,6 +16,8 @@ export default function Header() {
   const { isAuthenticated, user, logout } = useAuth();
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
   
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const toggleTheme = () => {
@@ -35,7 +37,7 @@ export default function Header() {
       <div className="container header-row" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px' }}>
         <Link to="/" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--primary)', whiteSpace: 'nowrap' }}>🎭 Коллекционер</Link>
         
-        <form onSubmit={handleSearch} className="header-search" style={{ flex: '1 1 200px', display: 'flex' }}>
+        <form onSubmit={handleSearch} className={`header-search ${isAuthPage ? 'header-search-hidden' : ''}`} style={{ flex: '1 1 200px', display: 'flex' }}>
           <input type="search" placeholder="Поиск..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ flex: 1, minWidth: 0, padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '8px 0 0 8px', background: 'var(--bg)', color: 'var(--text)' }} />
           <button type="submit" className="btn btn-primary" style={{ borderRadius: '0 8px 8px 0' }}>🔍</button>
         </form>

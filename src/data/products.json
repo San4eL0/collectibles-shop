@@ -174,5 +174,49 @@
     "thumbnail": "/images/16.jpg",
     "description": "Современный шедевр электронной музыки на двойном виниле.",
     "stock": 7
+  },
+  {
+    "id": 17,
+    "title": "Фигурка Старого Сквайра (Witcher 3)",
+    "category": "figures",
+    "era": "modern",
+    "price": 9800,
+    "rating": 4.7,
+    "thumbnail": "/images/17.jpg",
+    "description": "Статуэтка легендарного наездника из мира Ведьмака. Детальная проработка.",
+    "stock": 3
+  },
+  {
+    "id": 18,
+    "title": "Золотая монета «Сеятель» (Франция, 1913)",
+    "category": "coins",
+    "era": "vintage",
+    "price": 39000,
+    "rating": 4.8,
+    "thumbnail": "/images/18.jpg",
+    "description": "Стофранковый золотой номинал, символ Французской республики.",
+    "stock": 1
+  },
+  {
+    "id": 19,
+    "title": "Орден «Знак Почёта» (СССР)",
+    "category": "medals",
+    "era": "vintage",
+    "price": 7400,
+    "rating": 4.6,
+    "thumbnail": "/images/19.jpg",
+    "description": "Государственная награда за трудовые и иные заслуги. В коллекционной сохранности.",
+    "stock": 2
+  },
+  {
+    "id": 20,
+    "title": "Старинная механическая игрушка-автоматон (XIX век)",
+    "category": "figures",
+    "era": "vintage",
+    "price": 28500,
+    "rating": 4.9,
+    "thumbnail": "/images/20.jpg",
+    "description": "Редкий заводной автоматон из латуни. Рабочий механизм, реставрирован.",
+    "stock": 1
   }
 ]

@@ -26,7 +26,7 @@ function GameCard({ product }) {
       {/* Верхняя неоновая линия */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, var(--cyan), var(--magenta))', boxShadow: '0 0 12px var(--cyan)', zIndex: 3 }} />
 
-      <Link to={`/product/${product.id}`} className="card-img-link game-cover" style={{ display: 'block', position: 'relative', aspectRatio: '3 / 4.1', overflow: 'hidden', textDecoration: 'none' }}>
+      <Link to={`/product/${product.id}`} className="card-img-link game-cover" style={{ display: 'block', position: 'relative', aspectRatio: '16 / 9', overflow: 'hidden', textDecoration: 'none' }}>
         <img
           src={assetUrl(product.thumbnail)}
           alt={product.title}
@@ -148,7 +148,7 @@ export default function GamesPage() {
         .game-card:hover .card-img { transform: scale(1.06); }
         @media (max-width: 640px) {
           .game-card { max-width: 100%; }
-          .game-card .game-cover { aspect-ratio: 3 / 4.5; }
+          .game-card .game-cover { aspect-ratio: 16 / 10; }
         }
       `}</style>
     </div>

@@ -13,7 +13,7 @@ export default function Footer() {
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent)', boxShadow: '0 0 12px var(--cyan)' }} />
       <div className="container" style={{ textAlign: 'center' }}>
         <p style={{ fontFamily: 'var(--font-display)', letterSpacing: 2, fontSize: '0.8rem', color: 'var(--cyan)' }}>
-          КОЛЛЕКЦИОНЕР//2077
+          КОЛЛЕКЦИОНЕР
         </p>
         <p style={{ color: 'var(--text-muted)', marginTop: 8, fontSize: '0.8rem' }}>
           © 2026 Коллекционер. Учебный проект. // Территория Кремниевых Призраков

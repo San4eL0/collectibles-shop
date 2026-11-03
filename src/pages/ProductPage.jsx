@@ -96,7 +96,7 @@ export default function ProductPage() {
             </div>
 
             <button className="btn btn-primary" onClick={handleAdd} disabled={product.stock <= 0}>
-              {product.stock > 0 ? '► В АРХИВ ИЗДАНИЯ' : 'НЕТ В НАЛИЧИИ'}
+              {product.stock > 0 ? '► ЗАКАЗАТЬ' : 'НЕТ В НАЛИЧИИ'}
             </button>
             <button className="btn btn-outline" onClick={() => { addItem(product); navigate('/checkout'); }}>
               КУПИТЬ СЕЙЧАС

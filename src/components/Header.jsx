@@ -34,7 +34,7 @@ export default function Header() {
     }}>
       <div className="container header-row" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 16px' }}>
         <Link to="/" style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--cyan)', whiteSpace: 'nowrap', fontFamily: 'var(--font-display)', letterSpacing: 1 }}>
-          <span className="glitch" data-text="КОЛЛЕКЦИОНЕР//2077">КОЛЛЕКЦИОНЕР//2077</span>
+          <span className="glitch" data-text="КОЛЛЕКЦИОНЕР">КОЛЛЕКЦИОНЕР</span>
         </Link>
 
         <form onSubmit={handleSearch} className={`header-search ${isAuthPage ? 'header-search-hidden' : ''}`} style={{ flex: '1 1 200px', display: 'flex', margin: '0 8px' }}>

@@ -64,7 +64,7 @@ export default function ProductCard({ product }) {
             {product.price.toLocaleString('ru-RU')} ₥
           </strong>
           <button onClick={handleAdd} className="btn btn-primary" style={{ padding: '5px 12px', fontSize: '0.75rem', minHeight: '34px' }}>
-            ▸ АРХИВИРОВАТЬ
+            ▸ ЗАКАЗАТЬ
           </button>
         </div>
       </div>

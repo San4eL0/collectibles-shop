@@ -9,7 +9,7 @@ import Alert from '../components/Alert.jsx';
 const CATEGORIES = [
   { id: 'vinyl', name: 'Виниловые пластинки', code: 'AU', apx: '∀udioTrf' },
   { id: 'figures', name: 'Коллекционные фигурки', code: 'FIG', apx: 'Джunk Tech' },
-  { id: 'coins', name: 'Монеты и нумизматика', code: 'NNM', apx: 'Едди-архив' },
+  { id: 'coins', name: 'Монеты и нумизматика', code: 'NNM', apx: 'Едди-отдел' },
   { id: 'medals', name: 'Медали и ордена', code: 'MDL', apx: 'Орденск. База' },
 ];
 

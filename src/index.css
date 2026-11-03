@@ -39,7 +39,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Сетка-подложка в стиле Cyberpunk */
+/* Сетка-подложка в неоновом стиле */
 body::before {
   content: '';
   position: fixed;

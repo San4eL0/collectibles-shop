@@ -129,7 +129,7 @@ export default function AdminProductsPage() {
           style={{ flex: '1 1 240px', padding: '12px' }}
         />
         <button className="btn btn-primary" onClick={openCreate} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-          <IconPuls width={16} height={16} /> Добавить товар
+          <IconPlus width={16} height={16} /> Добавить товар
         </button>
       </div>
 

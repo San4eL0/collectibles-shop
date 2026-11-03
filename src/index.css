@@ -93,21 +93,47 @@ body::before {
   z-index: 0;
 }
 
-/* Сканлайны (CRT эффект) — только в тёмной теме */
+/* Сканлайны (CRT эффект) + падающие неоновые полосы — только в тёмной теме */
 body.theme-dark::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.14) 0px,
-    rgba(0, 0, 0, 0.14) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
+  /* Слой 1: CRT-сканлайны */
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.14) 0px,
+      rgba(0, 0, 0, 0.14) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    /* Слой 2: наклонные неоновые полосы, спускающиеся сверху справа в левый низ */
+    linear-gradient(115deg,
+      transparent 0%,
+      transparent 18%,
+      rgba(0, 240, 255, 0.16) 22%,
+      rgba(0, 240, 255, 0.03) 27%,
+      transparent 32%,
+      transparent 44%,
+      rgba(255, 58, 139, 0.14) 48%,
+      rgba(255, 58, 139, 0.02) 53%,
+      transparent 58%,
+      transparent 70%,
+      rgba(0, 240, 255, 0.10) 74%,
+      rgba(0, 240, 255, 0.02) 79%,
+      transparent 84%
+    );
+  opacity: 1;
+  filter: blur(0.5px);
+  animation: neon-sweep 9s ease-in-out infinite;
+}
+
+@keyframes neon-sweep {
+  0%, 100% { transform: translate3d(4%, -2%, 0) scale(1); }
+  35% { transform: translate3d(0%, 0%, 0) scale(1.02); }
+  70% { transform: translate3d(-3%, 2%, 0) scale(0.98); }
 }
 
 #root { position: relative; z-index: 1; }

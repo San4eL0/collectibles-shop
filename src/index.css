@@ -38,30 +38,30 @@ body.theme-dark {
 }
 
 body.theme-light {
-  --primary: #0ea5c0;
-  --primary-dark: #0b7e95;
-  --accent: #d69e00;
+  --primary: #0d1b3e;
+  --primary-dark: #16285a;
+  --accent: #0d1b3e;
   --accent-2: #c7437e;
-  --cyan: #0b86a6;
-  --yellow: #d69e00;
+  --cyan: #1a3a8f;
+  --yellow: #020617;
   --magenta: #b63a73;
-  --bg: #eef2f7;
-  --bg-2: #e2e8f2;
-  --surface: #f7f9fc;
-  --surface-2: #e6ecf5;
-  --text: #1a2233;
-  --text-muted: #5d6a82;
-  --border: #cfd8e6;
-  --border-glow: rgba(11, 134, 166, 0.4);
+  --bg: #fff6b0;
+  --bg-2: #fbe98a;
+  --surface: #fffef0;
+  --surface-2: #f7e98d;
+  --text: #10131f;
+  --text-muted: #4a4c33;
+  --border: #c9b64e;
+  --border-glow: rgba(13, 27, 62, 0.45);
   --success: #14805f;
   --error: #c62849;
-  --shadow: 0 0 14px rgba(11, 134, 166, 0.1), 0 4px 18px rgba(26, 34, 51, 0.08);
-  --grid-glow: rgba(11, 90, 130, 0.05);
-  --scanline: rgba(120, 140, 200, 0.04);
-  --header-bg: rgba(238, 242, 247, 0.88);
-  --logo-glow: #0b86a6;
-  --logo-off: rgba(11, 134, 166, 0.08);
-  --body-bg: #eef2f7;
+  --shadow: 0 0 14px rgba(13, 27, 62, 0.12), 0 4px 18px rgba(13, 27, 62, 0.12);
+  --grid-glow: rgba(13, 27, 62, 0.07);
+  --scanline: rgba(13, 27, 62, 0.04);
+  --header-bg: rgba(255, 246, 176, 0.92);
+  --logo-glow: #0d1b3e;
+  --logo-off: rgba(13, 27, 62, 0.08);
+  --body-bg: #fff6b0;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -321,8 +321,20 @@ body.theme-light .logo-neon .logo-mark {
 /* Светлая тема — деликатный глитч и мягкое свечение */
 body.theme-light .glitch::before { text-shadow: -1px 0 var(--magenta); opacity: 0.6; }
 body.theme-light .glitch::after { text-shadow: 1px 0 var(--cyan); opacity: 0.6; }
-body.theme-light .btn-primary { box-shadow: 0 0 10px rgba(11, 134, 166, 0.2); }
-body.theme-light .btn-primary:hover { box-shadow: 0 0 16px rgba(11, 134, 166, 0.35); }
+body.theme-light .btn-primary {
+  background: linear-gradient(135deg, #0d1b3e, #1a3a8f);
+  color: #fff6b0;
+  box-shadow: 0 0 12px rgba(13, 27, 62, 0.35);
+}
+body.theme-light .btn-primary:hover { box-shadow: 0 0 20px rgba(13, 27, 62, 0.5); }
+body.theme-light .btn-outline {
+  color: #0d1b3e;
+  border-color: rgba(13, 27, 62, 0.5);
+  background: transparent;
+}
+body.theme-light .btn-outline:hover { background: rgba(13, 27, 62, 0.08); color: #0d1b3e; }
+body.theme-light .logo-neon .logo-text { color: #0d1b3e; text-shadow: none; }
+body.theme-light .logo-neon .logo-mark { color: #0d1b3e; border-color: #0d1b3e; box-shadow: none; }
 
 body.theme-light .cp-card {
   background: linear-gradient(160deg, var(--surface), var(--surface-2));

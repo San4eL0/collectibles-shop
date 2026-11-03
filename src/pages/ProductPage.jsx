@@ -61,13 +61,13 @@ export default function ProductPage() {
         <Link to="/">Главная</Link> / <Link to="/catalog">Каталог</Link> / <span style={{ color: 'var(--cyan)' }}>{translateTitle(product.title)}</span>
       </nav>
 
-      <div style={{ display: 'grid', gap: '32px' }} className="product-layout">
-        <div className="cp-card" style={{ padding: '16px' }}>
+      <div style={{ display: 'grid', gap: '32px', gridAutoRows: 'auto' }} className="product-layout">
+        <div className="cp-card" style={{ padding: '12px', alignSelf: 'start', alignContent: 'start' }}>
           <img
             src={imageSrc}
             alt={translateTitle(product.title)}
             onError={() => setImgError(true)}
-            style={{ width: '100%' }}
+            style={{ width: '100%', objectFit: 'cover', borderRadius: 0, display: 'block' }}
           />
         </div>
 

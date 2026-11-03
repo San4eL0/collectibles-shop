@@ -284,5 +284,38 @@
     "thumbnail": "/images/games/26.jpg",
     "description": "Ограниченное переиздание Director's Cut в стальном боксе с DLC «Остров Ики».",
     "stock": 5
+  },
+  {
+    "id": 27,
+    "title": "Resident Evil 4 — Collector's Edition (Remake)",
+    "category": "games",
+    "era": "modern",
+    "price": 12900,
+    "rating": 4.9,
+    "thumbnail": "/images/games/27.jpg",
+    "description": "Коллекционное издание ремейка — фигурка Леона, артбук, стальной бокс и цифровой саундтрек.",
+    "stock": 4
+  },
+  {
+    "id": 28,
+    "title": "STALKER 2: Heart of Chornobyl — Ultimate Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 16900,
+    "rating": 4.9,
+    "thumbnail": "/images/games/28.jpg",
+    "description": "Ограниченный ультимейт-тираж: фигурка сталкера, артбук, нашивки, стилбук и карта Зоны.",
+    "stock": 5
+  },
+  {
+    "id": 29,
+    "title": "Need for Speed Unbound — Collector's Edition (Steelbook)",
+    "category": "games",
+    "era": "modern",
+    "price": 7900,
+    "rating": 4.6,
+    "thumbnail": "/images/games/29.jpg",
+    "description": "Ограниченный тираж в стальном боксе — стилизованная уличная гонка с граффити-артом.",
+    "stock": 8
   }
 ]

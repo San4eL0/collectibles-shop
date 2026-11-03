@@ -14,19 +14,22 @@ export function UIProvider({ children }) {
     <UIContext.Provider value={{ showToast }}>
       {children}
       {toast && (
-        <div style={{ 
-          position: 'fixed', 
-          bottom: 24, 
-          right: 24, 
-          padding: '12px 24px', 
-          // Здесь была ошибка: проверяем toast.type, а не type
-          background: toast.type === 'error' ? 'var(--error)' : 'var(--success)', 
-          color: '#fff', 
-          borderRadius: '8px', 
+        <div style={{
+          position: 'fixed',
+          bottom: 24,
+          right: 24,
+          padding: '12px 24px',
+          background: 'var(--surface-2)',
+          color: 'var(--text)',
+          border: `1px solid ${toast.type === 'error' ? 'var(--error)' : 'var(--cyan)'}`,
+          boxShadow: `0 0 16px ${toast.type === 'error' ? 'var(--error)66' : 'var(--cyan)55'}`,
           zIndex: 9999,
-          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+          fontFamily: 'var(--font-display)',
+          fontSize: '0.85rem',
+          letterSpacing: '0.5px',
+          clipPath: 'polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)',
         }}>
-          {toast.message}
+          {toast.type === 'error' ? '⚠ ' : '✓ '}{toast.message}
         </div>
       )}
     </UIContext.Provider>

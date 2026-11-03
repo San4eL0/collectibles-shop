@@ -16,10 +16,10 @@ export default function CatalogPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const [maxPrice, setMaxPrice] = useState(100000);
   const [minRating, setMinRating] = useState(0);
-  const [era, setEra] = useState('all'); // Фильтр по эпохе
+  const [era, setEra] = useState('all');
   const [sort, setSort] = useState('default');
   const [showFilters, setShowFilters] = useState(false);
 
@@ -27,7 +27,7 @@ export default function CatalogPage() {
     let isMounted = true;
     setLoading(true);
     setError(null);
-    
+
     let url = '/products';
     if (debouncedQ) {
       url = `/products/search?q=${debouncedQ}`;
@@ -75,14 +75,14 @@ export default function CatalogPage() {
   return (
     <div className="container" style={{ paddingTop: '24px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
-        <h1 style={{ fontSize: '1.8rem' }}>
+        <h1 className="section-title" style={{ fontSize: '1.6rem' }}>
           {getCategoryName()}
-          {debouncedQ && <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}> — «{debouncedQ}»</span>}
+          {debouncedQ && <span style={{ color: 'var(--text-muted)', fontWeight: 400, fontFamily: 'var(--font-main)' }}> — «{debouncedQ}»</span>}
         </h1>
-        
+
         <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Сортировка:</span>
-          <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ padding: '8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontFamily: 'var(--font-display)' }}>СОРТИРОВКА:</span>
+          <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ padding: '8px' }}>
             <option value="default">По умолчанию</option>
             <option value="price-asc">Цена: по возрастанию</option>
             <option value="price-desc">Цена: по убыванию</option>
@@ -92,27 +92,25 @@ export default function CatalogPage() {
       </div>
 
       <div style={{ display: 'grid', gap: '24px', alignItems: 'start' }} className="catalog-layout">
-        
-        {/* Мобильная кнопка-спойлер для фильтров */}
-        <button 
-          className="btn btn-outline filters-toggle" 
-          onClick={() => setShowFilters((s) => !s)} 
+
+        <button
+          className="btn btn-outline filters-toggle"
+          onClick={() => setShowFilters((s) => !s)}
           style={{ width: '100%', justifyContent: 'space-between' }}
         >
-          <span>⚙️ Фильтры</span>
+          <span>⚙ ФИЛЬТРЫ</span>
           <span>{showFilters ? '▲' : '▼'}</span>
         </button>
 
-        {/* Оборачиваем FilterPanel в sticky-контейнер */}
         <div style={{ position: 'sticky', top: '120px' }} className={`filters-panel ${showFilters ? 'open' : ''}`}>
-          <button 
-            className="btn btn-outline filters-hide" 
-            onClick={() => setShowFilters(false)} 
+          <button
+            className="btn btn-outline filters-hide"
+            onClick={() => setShowFilters(false)}
             style={{ width: '100%', marginBottom: '12px' }}
           >
-            ✕ Скрыть фильтры
+            ✕ СКРЫТЬ
           </button>
-          <FilterPanel 
+          <FilterPanel
             maxPrice={maxPrice}
             absoluteMaxPrice={absoluteMaxPrice}
             minRating={minRating}
@@ -120,18 +118,18 @@ export default function CatalogPage() {
             onChangePrice={setMaxPrice}
             onChangeRating={setMinRating}
             onChangeEra={setEra}
-            onReset={() => { setMaxPrice(absoluteMaxPrice); setMinRating(0); setEra('all'); }} 
+            onReset={() => { setMaxPrice(absoluteMaxPrice); setMinRating(0); setEra('all'); }}
           />
         </div>
-        
+
         <div>
           {loading && <Loader />}
           {error && <Alert type="error" message={error} />}
-          
+
           {!loading && !error && filteredProducts.length === 0 && (
             <Alert type="info" message="По вашему запросу ничего не найдено. Попробуйте сбросить фильтры." />
           )}
-          
+
           {!loading && !error && filteredProducts.length > 0 && (
             <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
               {filteredProducts.map((p) => <ProductCard key={p.id} product={p} />)}

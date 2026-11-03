@@ -2,14 +2,18 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchApi } from '../services/api';
 import ProductCard from '../components/ProductCard.jsx';
+import HeroSlider from '../components/HeroSlider.jsx';
 import Loader from '../components/Loader.jsx';
 import Alert from '../components/Alert.jsx';
 
 const CATEGORIES = [
-  { id: 'vinyl', name: 'Виниловые пластинки', icon: '💿', api: 'fragrances' },
-  { id: 'figures', name: 'Коллекционные фигурки', icon: '🗿', api: 'laptops' },
-  { id: 'coins', name: 'Монеты и нумизматика', icon: '🪙', api: 'mens-watches' },
+  { id: 'vinyl', name: 'Виниловые пластинки', code: 'AU', apx: '∀udioTrf' },
+  { id: 'figures', name: 'Коллекционные фигурки', code: 'FIG', apx: 'Джunk Tech' },
+  { id: 'coins', name: 'Монеты и нумизматика', code: 'NNM', apx: 'Едди-архив' },
+  { id: 'medals', name: 'Медали и ордена', code: 'MDL', apx: 'Орденск. База' },
 ];
+
+const GLYPHS = ['◉', '▲', '◎', '◈'];
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
@@ -25,43 +29,31 @@ export default function HomePage() {
 
   return (
     <div className="container">
-      {/* Баннер */}
-      <section style={{
-        background: 'linear-gradient(135deg, var(--primary), #9a7ee8)',
-        color: '#fff', padding: '48px 24px', borderRadius: '16px', marginBottom: '40px',
-        display: 'grid', gap: '16px'
-      }}>
-        <h1 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.6rem)', lineHeight: 1.2 }}>
-          Редкие сокровища для настоящих коллекционеров
-        </h1>
-        <p style={{ maxWidth: '560px', opacity: 0.9 }}>
-          Виниловые пластинки, эксклюзивные фигурки, нумизматика и другие коллекционные товары с проверенной историей.
-        </p>
-        <div>
-          <Link to="/catalog" className="btn" style={{ background: '#fff', color: 'var(--primary)' }}>
-            Перейти в каталог →
-          </Link>
-        </div>
-      </section>
+      {/* Слайдер */}
+      <HeroSlider />
 
       {/* Категории */}
       <section style={{ marginBottom: '40px' }}>
-        <h2 style={{ marginBottom: '16px', fontSize: '1.5rem' }}>Категории</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '12px' }}>
-          {CATEGORIES.map((cat) => (
+        <h2 className="section-title" style={{ fontSize: '1.5rem' }}>КАТЕГОРИИ // 데이터</h2>
+        <div className="divider" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '12px' }}>
+          {CATEGORIES.map((cat, i) => (
             <Link
               key={cat.id}
               to={`/catalog/${cat.id}`}
+              className="cp-card"
               style={{
-                background: 'var(--surface)', borderRadius: '12px', padding: '20px 16px',
-                textAlign: 'center', boxShadow: 'var(--shadow)', display: 'grid', gap: '8px',
-                transition: 'transform 0.2s'
+                padding: '20px 16px', textAlign: 'center', display: 'grid', gap: '8px',
+                transition: 'transform 0.2s',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-3px)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
-              <span style={{ fontSize: '2rem' }}>{cat.icon}</span>
+              <span style={{ fontSize: '1.8rem', color: 'var(--cyan)', textShadow: '0 0 16px var(--cyan)' }}>{GLYPHS[i % GLYPHS.length]}</span>
               <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>{cat.name}</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'var(--font-display)', letterSpacing: 1 }}>
+                TREE:{cat.code} // {cat.apx}
+              </span>
             </Link>
           ))}
         </div>
@@ -70,8 +62,8 @@ export default function HomePage() {
       {/* Популярные товары */}
       <section>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
-          <h2 style={{ fontSize: '1.5rem', margin: 0 }}>Популярное</h2>
-          <Link to="/catalog" style={{ color: 'var(--primary)', fontWeight: 600 }}>Все товары →</Link>
+          <h2 className="section-title" style={{ fontSize: '1.5rem', margin: 0 }}>ПОПУЛЯРНОЕ // FAV</h2>
+          <Link to="/catalog" className="btn btn-outline" style={{ fontWeight: 600 }}>ВСЕ ТОВАРЫ →</Link>
         </div>
         {loading && <Loader />}
         {error && <Alert type="error" message={error} />}

@@ -6,7 +6,7 @@ import { useUI } from '../context/UIContext.jsx';
 export default function RegisterPage() {
   const navigate = useNavigate();
   const { showToast } = useUI();
-  
+
   const [form, setForm] = useState({ firstName: '', lastName: '', username: '', email: '', password: '', confirm: '' });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export default function RegisterPage() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = 'Некорректный email';
     if (form.password.length < 6) errs.password = 'Минимум 6 символов';
     if (form.password !== form.confirm) errs.confirm = 'Пароли не совпадают';
-    
+
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
@@ -46,12 +46,12 @@ export default function RegisterPage() {
 
   const field = (label, name, type = 'text') => (
     <label style={{ display: 'grid', gap: '6px' }}>
-      <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{label}</span>
-      <input 
-        type={type} 
-        value={form[name]} 
+      <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)' }}>{label}</span>
+      <input
+        type={type}
+        value={form[name]}
         onChange={(e) => update(name, e.target.value)}
-        style={{ padding: '12px', borderRadius: '8px', border: `1px solid ${errors[name] ? 'var(--error)' : 'var(--border)'}` }} 
+        style={{ padding: '12px', border: `1px solid ${errors[name] ? 'var(--error)' : 'var(--border)'}` }}
       />
       {errors[name] && <span style={{ color: 'var(--error)', fontSize: '0.8rem' }}>{errors[name]}</span>}
     </label>
@@ -59,9 +59,9 @@ export default function RegisterPage() {
 
   return (
     <div className="container" style={{ maxWidth: '480px', paddingTop: '24px' }}>
-      <h1 style={{ marginBottom: '24px' }}>Регистрация</h1>
-      
-      <form onSubmit={handleSubmit} style={{ background: 'var(--surface)', borderRadius: '12px', padding: '24px', boxShadow: 'var(--shadow)', display: 'grid', gap: '16px' }}>
+      <h1 className="section-title" style={{ marginBottom: '24px' }}>СОЗДАНИЕ АККАУНТА // SIGNUP</h1>
+
+      <form onSubmit={handleSubmit} className="cp-card" style={{ padding: '24px', display: 'grid', gap: '16px' }}>
         <div className="form-row-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
           {field('Имя', 'firstName')}
           {field('Фамилия', 'lastName')}
@@ -70,15 +70,15 @@ export default function RegisterPage() {
         {field('Email', 'email', 'email')}
         {field('Пароль', 'password', 'password')}
         {field('Повторите пароль', 'confirm', 'password')}
-        
+
         {errors.submit && <span style={{ color: 'var(--error)' }}>{errors.submit}</span>}
-        
+
         <button type="submit" className="btn btn-primary" disabled={loading}>
-          {loading ? 'Отправка...' : 'Зарегистрироваться'}
+          {loading ? 'ПОДКЛЮЧЕНИЕ...' : '► СОЗДАТЬ АККАУНТ'}
         </button>
-        
+
         <p style={{ fontSize: '0.9rem', textAlign: 'center', color: 'var(--text-muted)', marginTop: '8px' }}>
-          Уже есть аккаунт? <Link to="/login" style={{ color: 'var(--primary)', fontWeight: 600 }}>Войти</Link>
+          Уже есть доступ? <Link to="/login" style={{ color: 'var(--cyan)', fontWeight: 600 }}>Войти</Link>
         </p>
       </form>
     </div>

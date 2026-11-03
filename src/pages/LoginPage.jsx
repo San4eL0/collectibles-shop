@@ -9,7 +9,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
-  
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ export default function LoginPage() {
       setError('Заполните все поля');
       return;
     }
-    
+
     setLoading(true);
     setError(null);
     try {
@@ -37,45 +37,31 @@ export default function LoginPage() {
 
   return (
     <div className="container" style={{ maxWidth: '420px', paddingTop: '24px' }}>
-      <h1 style={{ marginBottom: '24px' }}>Вход в аккаунт</h1>
-      
-      <form onSubmit={handleSubmit} style={{ background: 'var(--surface)', borderRadius: '12px', padding: '24px', boxShadow: 'var(--shadow)', display: 'grid', gap: '16px' }}>
+      <h1 className="section-title" style={{ marginBottom: '24px' }}>ВХОД В АККАУНТ // LOGIN</h1>
+
+      <form onSubmit={handleSubmit} className="cp-card" style={{ padding: '24px', display: 'grid', gap: '16px' }}>
         <label style={{ display: 'grid', gap: '6px' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Логин</span>
-          <input 
-            type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }} 
-            placeholder="Введите логин" 
-            autoComplete="username" 
-          />
+          <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)' }}>ЛОГИН</span>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ padding: '12px' }} placeholder="Идентификатор" autoComplete="username" />
         </label>
-        
+
         <label style={{ display: 'grid', gap: '6px' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Пароль</span>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)' }} 
-            placeholder="Введите пароль" 
-            autoComplete="current-password" 
-          />
+          <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)' }}>ПАРОЛЬ</span>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ padding: '12px' }} placeholder="Код доступа" autoComplete="current-password" />
         </label>
-        
-        {error && <span style={{ color: 'var(--error)', fontSize: '0.9rem' }}>{error}</span>}
-        
+
+        {error && <span style={{ color: 'var(--error)', fontSize: '0.9rem' }}>⚠ {error}</span>}
+
         <button type="submit" className="btn btn-primary" disabled={loading}>
-          {loading ? 'Вход...' : 'Войти'}
+          {loading ? 'ПОДКЛЮЧЕНИЕ...' : '► ВОЙТИ'}
         </button>
-        
+
         <p style={{ fontSize: '0.9rem', textAlign: 'center', color: 'var(--text-muted)', marginTop: '8px' }}>
-          Нет аккаунта? <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 600 }}>Зарегистрироваться</Link>
+          Нет доступа? <Link to="/register" style={{ color: 'var(--cyan)', fontWeight: 600 }}>Создать аккаунт</Link>
         </p>
-        
-        <div style={{ padding: '12px', background: '#f0f0f5', borderRadius: '8px', fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center' }}>
-          Для теста: логин <strong>emilys</strong>, пароль <strong>emilyspass</strong>
+
+        <div style={{ padding: '12px', background: 'var(--bg-2)', border: '1px solid var(--border)', fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center' }}>
+          Тест: логин <strong style={{ color: 'var(--accent)' }}>emilys</strong>, пароль <strong style={{ color: 'var(--accent)' }}>emilyspass</strong>
         </div>
       </form>
     </div>

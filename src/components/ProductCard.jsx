@@ -28,16 +28,16 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Картинка товара */}
-      <Link to={`/product/${product.id}`} style={{ display: 'block', overflow: 'hidden', aspectRatio: '1', textDecoration: 'none', position: 'relative' }}>
+      <Link to={`/product/${product.id}`} className="card-img-link" style={{ display: 'block', overflow: 'hidden', aspectRatio: '1', textDecoration: 'none', position: 'relative' }}>
         <img
           src={assetUrl(product.thumbnail)}
           alt={product.title}
+          className="card-img"
+          loading="lazy"
           style={{
             width: '100%', height: '100%', objectFit: 'cover', display: 'block',
             transition: 'transform 0.4s', filter: 'contrast(1.05)',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.filter = 'contrast(1.15) saturate(1.15)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'contrast(1.05)'; }}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 55%, var(--border-glow))', mixBlendMode: 'screen', pointerEvents: 'none', opacity: 0.35 }} />
       </Link>

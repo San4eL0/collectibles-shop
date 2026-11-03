@@ -8,7 +8,8 @@ import { UIProvider } from './context/UIContext.jsx';
 import './index.css';
 
 // Восстанавливаем тему из localStorage
-document.body.className = localStorage.getItem('theme') === 'tno' ? 'theme-tno' : '';
+const savedTheme = localStorage.getItem('theme') === 'light' ? 'theme-light' : 'theme-dark';
+document.body.className = savedTheme;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

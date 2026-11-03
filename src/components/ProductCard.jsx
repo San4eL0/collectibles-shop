@@ -2,13 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
 import { assetUrl } from '../utils/assetUrl.js';
-
-const CATEGORY_ICONS = {
-  vinyl: '◉',
-  figures: '▲',
-  coins: '◎',
-  medals: '◈',
-};
+import { IconArrowRight, IconBox } from './icons.jsx';
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart();
@@ -19,20 +13,18 @@ export default function ProductCard({ product }) {
     showToast(`«${product.title}» добавлен в корзину`);
   };
 
-  const icon = CATEGORY_ICONS[product.category] || '◆';
-
   return (
     <div className="cp-card" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Категорийный ярлык */}
       <div style={{
         position: 'absolute', top: 10, left: 10, zIndex: 2,
         display: 'flex', alignItems: 'center', gap: 6,
-        background: 'rgba(10,9,20,0.75)', padding: '2px 8px',
+        background: 'var(--bg-2)', padding: '3px 8px',
         border: '1px solid var(--border-glow)',
-        fontFamily: 'var(--font-display)', fontSize: '0.7rem', letterSpacing: 1,
-        color: 'var(--cyan)',
+        fontFamily: 'var(--font-display)', fontSize: '0.68rem', letterSpacing: 1,
+        color: 'var(--cyan)', backdropFilter: 'blur(4px)',
       }}>
-        {icon} LOG-{String(product.id).padStart(3, '0')}
+        <IconBox width={13} height={13} /> LOG-{String(product.id).padStart(3, '0')}
       </div>
 
       {/* Картинка товара */}
@@ -42,12 +34,12 @@ export default function ProductCard({ product }) {
           alt={product.title}
           style={{
             width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-            transition: 'transform 0.4s', filter: 'contrast(1.1)',
+            transition: 'transform 0.4s', filter: 'contrast(1.05)',
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.filter = 'contrast(1.2) saturate(1.2)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'contrast(1.1)'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.filter = 'contrast(1.15) saturate(1.15)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.filter = 'contrast(1.05)'; }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 55%, rgba(0,240,255,0.15))', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 55%, var(--border-glow))', mixBlendMode: 'screen', pointerEvents: 'none', opacity: 0.35 }} />
       </Link>
 
       <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
@@ -55,16 +47,16 @@ export default function ProductCard({ product }) {
           {product.title}
         </Link>
 
-        <span style={{ color: 'var(--accent)', fontSize: '0.85rem', fontFamily: 'var(--font-display)', letterSpacing: '0.5px' }}>
+        <span style={{ color: 'var(--accent)', fontSize: '0.82rem', fontFamily: 'var(--font-display)', letterSpacing: '0.5px' }}>
           ★ {product.rating?.toFixed(1) || '—'} / 5.0
         </span>
 
         <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
           <strong style={{ color: 'var(--cyan)', fontSize: '1.05rem', fontFamily: 'var(--font-display)' }}>
-            {product.price.toLocaleString('ru-RU')} ₥
+            {product.price.toLocaleString('ru-RU')} ₽
           </strong>
-          <button onClick={handleAdd} className="btn btn-primary" style={{ padding: '5px 12px', fontSize: '0.75rem', minHeight: '34px' }}>
-            ▸ ЗАКАЗАТЬ
+          <button onClick={handleAdd} className="btn btn-primary" style={{ padding: '5px 12px', fontSize: '0.72rem', minHeight: '34px', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <IconArrowRight width={14} height={14} /> ЗАКАЗАТЬ
           </button>
         </div>
       </div>

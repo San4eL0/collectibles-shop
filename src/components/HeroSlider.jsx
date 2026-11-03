@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { assetUrl } from '../utils/assetUrl.js';
+import { IconArrowRight, IconChevronLeft, IconChevronRight } from './icons.jsx';
 
 const SLIDES = [
   {
@@ -75,7 +76,7 @@ export default function HeroSlider() {
         />
         {/* Cyan overlay */}
         <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, transparent 40%, rgba(0,240,255,0.25))`, mixBlendMode: 'screen' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent 60%, rgba(10,9,20,0.6))' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, transparent 60%, var(--bg) )', opacity: 0.55 }} />
         <div className="corner-tag" />
 
         {/* Терминальные декор-линии */}
@@ -101,7 +102,7 @@ export default function HeroSlider() {
         <p style={{ maxWidth: '480px', opacity: 0.85, color: 'var(--text-muted)' }}>{slide.text}</p>
 
         <Link to={slide.to} className="btn btn-primary" style={{ justifySelf: 'start' }}>
-          {slide.cta} →
+          {slide.cta} <IconArrowRight width={16} height={16} />
         </Link>
 
         {/* Контролы слайдера */}
@@ -122,8 +123,8 @@ export default function HeroSlider() {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8, marginLeft: 'auto' }}>
-            <button onClick={prev} className="btn btn-outline" style={{ padding: '4px 12px', minHeight: '34px' }}>◄</button>
-            <button onClick={next} className="btn btn-outline" style={{ padding: '4px 12px', minHeight: '34px' }}>►</button>
+            <button onClick={prev} className="btn btn-outline" style={{ padding: '4px 12px', minHeight: '34px', display: 'inline-flex', alignItems: 'center' }}><IconChevronLeft width={16} height={16} /></button>
+            <button onClick={next} className="btn btn-outline" style={{ padding: '4px 12px', minHeight: '34px', display: 'inline-flex', alignItems: 'center' }}><IconChevronRight width={16} height={16} /></button>
           </div>
         </div>
       </div>

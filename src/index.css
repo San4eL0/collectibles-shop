@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
 
+/* =========================================
+   ТЕМЫ — dark (по умолчанию) и light
+   Обе в общем неоновом дизайн-языке
+   ========================================= */
 :root {
+  --radius: 0;
+  --font-main: 'Rajdhani', 'Aldrich', sans-serif;
+  --font-display: 'Orbitron', 'Aldrich', sans-serif;
+}
+
+body.theme-dark {
   --primary: #00f0ff;
   --primary-dark: #0099bb;
   --accent: #ffd500;
@@ -18,10 +28,40 @@
   --border-glow: rgba(0, 240, 255, 0.45);
   --success: #00ff9d;
   --error: #ff3355;
-  --radius: 0;
   --shadow: 0 0 20px rgba(0, 240, 255, 0.12), 0 4px 24px rgba(0, 0, 0, 0.5);
-  --font-main: 'Rajdhani', 'Aldrich', sans-serif;
-  --font-display: 'Orbitron', 'Aldrich', sans-serif;
+  --grid-glow: rgba(0, 240, 255, 0.055);
+  --scanline: rgba(0, 0, 0, 0.15);
+  --header-bg: rgba(10, 9, 20, 0.92);
+  --logo-glow: #00f0ff;
+  --logo-off: rgba(0, 240, 255, 0.08);
+  --body-bg: #0a0914;
+}
+
+body.theme-light {
+  --primary: #00a8ff;
+  --primary-dark: #0077c2;
+  --accent: #ffcc00;
+  --accent-2: #e7225f;
+  --cyan: #009ee0;
+  --yellow: #ffcc00;
+  --magenta: #d6226b;
+  --bg: #f4f6ff;
+  --bg-2: #e8edff;
+  --surface: #ffffff;
+  --surface-2: #dfe6ff;
+  --text: #10132b;
+  --text-muted: #5a6279;
+  --border: #c4cdf0;
+  --border-glow: rgba(0, 158, 224, 0.5);
+  --success: #00a870;
+  --error: #e0224a;
+  --shadow: 0 0 16px rgba(0, 140, 255, 0.12), 0 4px 20px rgba(16, 19, 43, 0.1);
+  --grid-glow: rgba(0, 90, 180, 0.06);
+  --scanline: rgba(120, 140, 200, 0.05);
+  --header-bg: rgba(255, 255, 255, 0.86);
+  --logo-glow: #009ee0;
+  --logo-off: rgba(0, 158, 224, 0.08);
+  --body-bg: #f4f6ff;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,35 +72,36 @@
 
 body {
   font-family: var(--font-main);
-  background: var(--bg);
+  background: var(--body-bg);
   color: var(--text);
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Сетка-подложка в неоновом стиле */
+/* Сетка-подложка */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(var(--grid-glow) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-glow) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Сканлайны (CRT эффект) */
-body::after {
+/* Сканлайны (CRT эффект) — только в тёмной теме */
+body.theme-dark::after {
   content: '';
   position: fixed;
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.18) 0px,
-    rgba(0, 0, 0, 0.18) 1px,
+    rgba(0, 0, 0, 0.14) 0px,
+    rgba(0, 0, 0, 0.14) 1px,
     transparent 1px,
     transparent 3px
   );
@@ -96,27 +137,26 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 .btn-primary {
   background: linear-gradient(135deg, var(--cyan), var(--magenta));
-  color: #04030a;
-  box-shadow: 0 0 18px rgba(0, 240, 255, 0.35);
-  text-shadow: none;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(0, 200, 255, 0.35);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 12px rgba(255, 58, 139, 0.5);
-  filter: brightness(1.1);
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.6), 0 0 12px rgba(255, 60, 140, 0.5);
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
 .btn-outline {
   border: 1px solid var(--border-glow);
   color: var(--cyan);
-  background: rgba(0, 240, 255, 0.05);
+  background: transparent;
 }
 
 .btn-outline:hover {
-  background: rgba(0, 240, 255, 0.15);
-  box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
-  color: #fff;
+  background: rgba(0, 180, 224, 0.12);
+  box-shadow: 0 0 16px rgba(0, 180, 224, 0.3);
+  color: var(--cyan);
 }
 
 .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
@@ -134,7 +174,7 @@ input, select, textarea {
 }
 input:focus, select:focus, textarea:focus {
   border-color: var(--cyan) !important;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 12px rgba(0, 180, 224, 0.3);
 }
 input::placeholder { color: var(--text-muted); }
 input[type='range'] { accent-color: var(--cyan); }
@@ -146,7 +186,6 @@ h1, h2, h3 {
   letter-spacing: 0.5px;
 }
 
-/* Неоновое свечение заголовков секций */
 .section-title {
   position: relative;
   display: inline-block;
@@ -177,7 +216,6 @@ h1, h2, h3 {
   transform: translateY(-3px);
 }
 
-/* Метка-уголок */
 .corner-tag {
   position: absolute;
   top: 0;
@@ -188,7 +226,99 @@ h1, h2, h3 {
   border-left: 28px solid transparent;
 }
 
-/* Глитч-эффект заголовков бренда */
+/* ===== Логотип: неоновое свечение в тёмном режиме ===== */
+.logo-neon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.logo-neon .logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--cyan);
+  border: 2px solid var(--cyan);
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+  transform: rotate(45deg);
+}
+.logo-neon .logo-mark svg { transform: rotate(-45deg); }
+
+.logo-neon .logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+
+/* Тёмный режим — неон гаснет/зажигается */
+body.theme-dark .logo-neon .logo-text {
+  color: #fff;
+  text-shadow:
+    0 0 6px var(--logo-glow),
+    0 0 18px var(--logo-glow),
+    0 0 42px var(--logo-glow);
+  animation: logo-flicker 4s infinite;
+}
+body.theme-dark .logo-neon .logo-mark {
+  color: var(--logo-glow);
+  border-color: var(--logo-glow);
+  box-shadow: 0 0 12px var(--logo-glow), inset 0 0 8px var(--logo-glow);
+  animation: logo-flicker 4s infinite;
+}
+body.theme-dark .logo-neon .logo-accent {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent), 0 0 24px var(--accent);
+}
+
+/* Светлый режим — лого статичное, яркое */
+body.theme-light .logo-neon .logo-text {
+  color: var(--text);
+}
+body.theme-light .logo-neon .logo-mark {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px rgba(0, 158, 224, 0.35);
+}
+
+@keyframes logo-flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24% { opacity: 0.4; }
+  55% { opacity: 0.7; }
+}
+
+/* ===== Переключатель темы ===== */
+.theme-toggle {
+  position: relative;
+  width: 54px;
+  height: 28px;
+  border: 1px solid var(--border-glow);
+  clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+  background: var(--bg-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+}
+.theme-toggle .knob {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #04030a;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  box-shadow: 0 0 10px rgba(0, 180, 224, 0.6);
+}
+.theme-light .theme-toggle .knob { transform: translateX(26px); }
+
+/* Глитч */
 .glitch {
   position: relative;
   display: inline-block;
@@ -227,7 +357,6 @@ h1, h2, h3 {
   97% { clip-path: inset(40% 0 30% 0); transform: translate(1px, 0); }
 }
 
-/* Timeline-разделитель */
 .divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border-glow), var(--accent), var(--magenta), transparent);
@@ -236,7 +365,6 @@ h1, h2, h3 {
   box-shadow: 0 0 12px var(--border-glow);
 }
 
-/* ===== Таблицы (админка) ===== */
 table { font-family: var(--font-main); }
 
 /* ===== Мобильная адаптация ===== */

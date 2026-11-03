@@ -68,7 +68,7 @@ export default function CatalogPage() {
   }, [products, maxPrice, minRating, era, sort]);
 
   const getCategoryName = () => {
-    const map = { vinyl: 'Винил', figures: 'Фигурки', coins: 'Монеты', medals: 'Медали' };
+    const map = { vinyl: 'Винил', figures: 'Фигурки', coins: 'Монеты', medals: 'Медали', games: 'Игры' };
     return category ? map[category] : 'Все товары';
   };
 

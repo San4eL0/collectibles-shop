@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout.jsx';
 import ProtectedRoute from '../components/ProtectedRoute.jsx';
 import HomePage from '../pages/HomePage.jsx';
+import GamesPage from '../pages/GamesPage.jsx';
 import CatalogPage from '../pages/CatalogPage.jsx';
 import ProductPage from '../pages/ProductPage.jsx';
 import CartPage from '../pages/CartPage.jsx';
@@ -19,6 +20,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
+        <Route path="games" element={<GamesPage />} />
         <Route path="catalog" element={<CatalogPage />} />
         <Route path="catalog/:category" element={<CatalogPage />} />
         <Route path="product/:id" element={<ProductPage />} />

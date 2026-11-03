@@ -7,13 +7,14 @@ import Loader from '../components/Loader.jsx';
 import Alert from '../components/Alert.jsx';
 
 const CATEGORIES = [
-  { id: 'vinyl', name: 'Виниловые пластинки', code: 'AU', apx: '∀udioTrf' },
-  { id: 'figures', name: 'Коллекционные фигурки', code: 'FIG', apx: 'Джunk Tech' },
-  { id: 'coins', name: 'Монеты и нумизматика', code: 'NNM', apx: 'Едди-отдел' },
-  { id: 'medals', name: 'Медали и ордена', code: 'MDL', apx: 'Орденск. База' },
+  { id: 'games', name: 'Лимитированные игры', code: 'GMS', apx: 'Игровая полка', href: '/games' },
+  { id: 'vinyl', name: 'Виниловые пластинки', code: 'AU', apx: '∀udioTrf', href: '/catalog/vinyl' },
+  { id: 'figures', name: 'Коллекционные фигурки', code: 'FIG', apx: 'Джunk Tech', href: '/catalog/figures' },
+  { id: 'coins', name: 'Монеты и нумизматика', code: 'NNM', apx: 'Едди-отдел', href: '/catalog/coins' },
+  { id: 'medals', name: 'Медали и ордена', code: 'MDL', apx: 'Орденск. База', href: '/catalog/medals' },
 ];
 
-const GLYPHS = ['◉', '▲', '◎', '◈'];
+const GLYPHS = ['◈', '◉', '▲', '◎', '◆'];
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
@@ -40,7 +41,7 @@ export default function HomePage() {
           {CATEGORIES.map((cat, i) => (
             <Link
               key={cat.id}
-              to={`/catalog/${cat.id}`}
+              to={cat.href}
               className="cp-card"
               style={{
                 padding: '20px 16px', textAlign: 'center', display: 'grid', gap: '8px',

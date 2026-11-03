@@ -218,5 +218,71 @@
     "thumbnail": "/images/20.jpg",
     "description": "Редкий заводной автоматон из латуни. Рабочий механизм, реставрирован.",
     "stock": 1
+  },
+  {
+    "id": 21,
+    "title": "Cyberpunk 2077 — Коллекционное издание (Collector's Edition)",
+    "category": "games",
+    "era": "modern",
+    "price": 24900,
+    "rating": 5.0,
+    "thumbnail": "/images/games/21.jpg",
+    "description": "Лимитированное коллекционное издание — статую Джонни Сильверхенда, артбук, металлбокс, саундтрек и код на цифровую копию.",
+    "stock": 3
+  },
+  {
+    "id": 22,
+    "title": "The Witcher 3: Wild Hunt — Complete Edition (Steelbook)",
+    "category": "games",
+    "era": "modern",
+    "price": 8900,
+    "rating": 4.9,
+    "thumbnail": "/images/games/22.jpg",
+    "description": "Ограниченный тираж в стальном боксе с дополнениями Hearts of Stone и Blood and Wine.",
+    "stock": 6
+  },
+  {
+    "id": 23,
+    "title": "Elden Ring — Limited Edition (Collector's)",
+    "category": "games",
+    "era": "modern",
+    "price": 18900,
+    "rating": 4.9,
+    "thumbnail": "/images/games/23.jpg",
+    "description": "Коллекционное издание с 23-см статуэткой Малении, стилбуком, артбуком и картой мира.",
+    "stock": 2
+  },
+  {
+    "id": 24,
+    "title": "The Last of Us Part II — Special Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 7200,
+    "rating": 4.8,
+    "thumbnail": "/images/games/24.jpg",
+    "description": "Линейный тираж Special Edition в стальном боксе — коллекционное издание Naughty Dog.",
+    "stock": 4
+  },
+  {
+    "id": 25,
+    "title": "God of War Ragnarök — Collector's Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 16400,
+    "rating": 4.9,
+    "thumbnail": "/images/games/25.jpg",
+    "description": "Ограниченный тираж с 16-см статуэткой Кратоса и Атрея, копией Мьёльнира и стилбуком.",
+    "stock": 2
+  },
+  {
+    "id": 26,
+    "title": "Ghost of Tsushima — Director's Cut (Steelbook)",
+    "category": "games",
+    "era": "modern",
+    "price": 6300,
+    "rating": 4.8,
+    "thumbnail": "/images/games/26.jpg",
+    "description": "Ограниченное переиздание Director's Cut в стальном боксе с DLC «Остров Ики».",
+    "stock": 5
   }
 ]

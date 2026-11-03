@@ -8,6 +8,7 @@ import {
 
 const CATEGORIES = [
   { id: 'all', name: 'Все' },
+  { id: 'games', name: 'Игры' },
   { id: 'vinyl', name: 'Винил' },
   { id: 'figures', name: 'Фигурки' },
   { id: 'coins', name: 'Монеты' },
@@ -111,7 +112,8 @@ export default function Header() {
           {CATEGORIES.map((c) => (
             <NavLink
               key={c.id}
-              to={c.id === 'all' ? '/catalog' : `/catalog/${c.id}`}
+              to={c.id === 'all' ? '/catalog' : c.id === 'games' ? '/games' : `/catalog/${c.id}`}
+              end={c.id === 'games'}
               style={({ isActive }) => ({
                 display: 'flex', alignItems: 'center', gap: 6,
                 padding: '8px 16px',

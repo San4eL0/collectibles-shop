@@ -38,30 +38,30 @@ body.theme-dark {
 }
 
 body.theme-light {
-  --primary: #00a8ff;
-  --primary-dark: #0077c2;
-  --accent: #ffcc00;
-  --accent-2: #e7225f;
-  --cyan: #009ee0;
-  --yellow: #ffcc00;
-  --magenta: #d6226b;
-  --bg: #f4f6ff;
-  --bg-2: #e8edff;
-  --surface: #ffffff;
-  --surface-2: #dfe6ff;
-  --text: #10132b;
-  --text-muted: #5a6279;
-  --border: #c4cdf0;
-  --border-glow: rgba(0, 158, 224, 0.5);
-  --success: #00a870;
-  --error: #e0224a;
-  --shadow: 0 0 16px rgba(0, 140, 255, 0.12), 0 4px 20px rgba(16, 19, 43, 0.1);
-  --grid-glow: rgba(0, 90, 180, 0.06);
-  --scanline: rgba(120, 140, 200, 0.05);
-  --header-bg: rgba(255, 255, 255, 0.86);
-  --logo-glow: #009ee0;
-  --logo-off: rgba(0, 158, 224, 0.08);
-  --body-bg: #f4f6ff;
+  --primary: #0ea5c0;
+  --primary-dark: #0b7e95;
+  --accent: #d69e00;
+  --accent-2: #c7437e;
+  --cyan: #0b86a6;
+  --yellow: #d69e00;
+  --magenta: #b63a73;
+  --bg: #eef2f7;
+  --bg-2: #e2e8f2;
+  --surface: #f7f9fc;
+  --surface-2: #e6ecf5;
+  --text: #1a2233;
+  --text-muted: #5d6a82;
+  --border: #cfd8e6;
+  --border-glow: rgba(11, 134, 166, 0.4);
+  --success: #14805f;
+  --error: #c62849;
+  --shadow: 0 0 14px rgba(11, 134, 166, 0.1), 0 4px 18px rgba(26, 34, 51, 0.08);
+  --grid-glow: rgba(11, 90, 130, 0.05);
+  --scanline: rgba(120, 140, 200, 0.04);
+  --header-bg: rgba(238, 242, 247, 0.88);
+  --logo-glow: #0b86a6;
+  --logo-off: rgba(11, 134, 166, 0.08);
+  --body-bg: #eef2f7;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -317,6 +317,21 @@ body.theme-light .logo-neon .logo-mark {
   box-shadow: 0 0 10px rgba(0, 180, 224, 0.6);
 }
 .theme-light .theme-toggle .knob { transform: translateX(26px); }
+
+/* Светлая тема — деликатный глитч и мягкое свечение */
+body.theme-light .glitch::before { text-shadow: -1px 0 var(--magenta); opacity: 0.6; }
+body.theme-light .glitch::after { text-shadow: 1px 0 var(--cyan); opacity: 0.6; }
+body.theme-light .btn-primary { box-shadow: 0 0 10px rgba(11, 134, 166, 0.2); }
+body.theme-light .btn-primary:hover { box-shadow: 0 0 16px rgba(11, 134, 166, 0.35); }
+
+body.theme-light .cp-card {
+  background: linear-gradient(160deg, var(--surface), var(--surface-2));
+  border-color: var(--border);
+}
+body.theme-light .cp-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow);
+}
 
 /* Глитч */
 .glitch {

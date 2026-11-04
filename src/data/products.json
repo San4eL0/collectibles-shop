@@ -362,5 +362,181 @@
     ],
     "description": "Ограниченный тираж в стальном боксе — стилизованная уличная гонка с граффити-артом.",
     "stock": 8
+  },
+  {
+    "id": 30,
+    "title": "Red Dead Redemption 2 — Special Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 11900,
+    "rating": 5.0,
+    "thumbnail": "/images/games/30.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/ss_66b553f4c209476d3e4ce25fa4714002cc914c4f.1920x1080.jpg?t=1759502961",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/ss_bac60bacbf5da8945103648c08d27d5e202444ca.1920x1080.jpg?t=1759502961",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/ss_668dafe477743f8b50b818d5bbfcec669e9ba93e.1920x1080.jpg?t=1759502961"
+    ],
+    "description": "Специальное издание легендарного вестерна от Rockstar. Сюжетная кампания и онлайн-режим.",
+    "stock": 6
+  },
+  {
+    "id": 31,
+    "title": "Baldur's Gate 3 — Deluxe Edition (Collector's)",
+    "category": "games",
+    "era": "modern",
+    "price": 13500,
+    "rating": 5.0,
+    "thumbnail": "/images/games/31.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/ss_c73bc54415178c07fef85f54ee26621728c77504.1920x1080.jpg?t=1777363040",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/ss_73d93bea842b93914d966622104dcb8c0f42972b.1920x1080.jpg?t=1777363040",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/ss_cf936d31061b58e98e0c646aee00e6030c410cda.1920x1080.jpg?t=1777363040"
+    ],
+    "description": "RPG года в коллекционном исполнении. По мотивам D&D, грандиозная история и свобода выбора.",
+    "stock": 4
+  },
+  {
+    "id": 32,
+    "title": "Hogwarts Legacy — Collector's Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 11900,
+    "rating": 4.8,
+    "thumbnail": "/images/games/32.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/ss_725bf58485beb4aa37a3a69c1e2baa69bf3e4653.1920x1080.jpg?t=1790708992",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/ss_df93b5e8a183f7232d68be94ae78920a90de1443.1920x1080.jpg?t=1790708992",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/ss_94058497bf0f8fabdde17ee8d59bece609a60663.1920x1080.jpg?t=1790708992"
+    ],
+    "description": "Магическая RPG по вселенной Гарри Поттера. Обучение в Хогвартсе, дуэли и открытый мир.",
+    "stock": 7
+  },
+  {
+    "id": 33,
+    "title": "Horizon Forbidden West — Complete Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 9900,
+    "rating": 4.9,
+    "thumbnail": "/images/games/33.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/ss_7c1ead4b3d952fd0fb92735397945bd8732bba53.1920x1080.jpg?t=1789585745",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/ss_2d05273cef37bcc3651dc9dbea42dbeca5f5f196.1920x1080.jpg?t=1789585745",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/ss_87750b2dbc34d82d1ffef7aaab40a9f46d970d99.1920x1080.jpg?t=1789585745"
+    ],
+    "description": "Полное издание приключений Элой: машины-динозавры, живописный постапокалипсис и дополнения.",
+    "stock": 5
+  },
+  {
+    "id": 34,
+    "title": "Marvel's Spider-Man Remastered — Steelbook",
+    "category": "games",
+    "era": "modern",
+    "price": 8700,
+    "rating": 4.9,
+    "thumbnail": "/images/games/34.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/ss_dfe778bf6d66e952e4acd4e1f926f7615b609ddf.1920x1080.jpg?t=1787838689",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/ss_427677cf78195df94702f0a963cd9eaeb9d8935a.1920x1080.jpg?t=1787838689",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/ss_dfba6f2477bfa42be69ddfdffbd421d3943d20bf.1920x1080.jpg?t=1787838689"
+    ],
+    "description": "Ремастер Человека-паука на ПК в стальном боксе. Свинг по Нью-Йорку и все дополнения.",
+    "stock": 6
+  },
+  {
+    "id": 35,
+    "title": "DOOM Eternal — Collector's Edition (Steelbook)",
+    "category": "games",
+    "era": "modern",
+    "price": 6900,
+    "rating": 4.8,
+    "thumbnail": "/images/games/35.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/782330/ss_4f93a7c5003d49cb32f6c0c6e547452b284580a0.1920x1080.jpg?t=1783432602",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/782330/ss_7e6a2148321c8024285e3924903d8897cac95358.1920x1080.jpg?t=1783432602",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/782330/ss_af3b43c4be0029b52ceefaf55ebe1918e2cb3471.1920x1080.jpg?t=1783432602"
+    ],
+    "description": "Динамичный шутер от id Software в коллекционном стилбуке. Адские орды не остановить.",
+    "stock": 9
+  },
+  {
+    "id": 36,
+    "title": "God of War (2018) — Collector's Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 9100,
+    "rating": 5.0,
+    "thumbnail": "/images/games/36.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/ss_6eccc970b5de2943546d93d319be1b5c0618f21b.1920x1080.jpg?t=1763059412",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/ss_f1bff24d3967a21d303d95e11ed892e3d9113057.1920x1080.jpg?t=1763059412",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/ss_3670ba72c7e3e9c3c3225547ef2c1053504e62b8.1920x1080.jpg?t=1763059412"
+    ],
+    "description": "Перезапуск легенды: Кратос и Атрей в скандинавских мирах. Драматичный сюжет и бои.",
+    "stock": 4
+  },
+  {
+    "id": 37,
+    "title": "Days Gone — Steelbook Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 5600,
+    "rating": 4.6,
+    "thumbnail": "/images/games/37.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1259420/ss_8d958e566d5315463d099b21eae729d0f462caad.1920x1080.jpg?t=1750947718",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1259420/ss_4a1a39d5559909424ed36414070477a96c91e92c.1920x1080.jpg?t=1750947718",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1259420/ss_364f3048399fcb95df5e878c708c94e934cd53d4.1920x1080.jpg?t=1750947718"
+    ],
+    "description": "Постапокалиптическая выживалка с ордами зомби. Байк, охота и выживание в Орегоне.",
+    "stock": 8
+  },
+  {
+    "id": 38,
+    "title": "Detroit: Become Human — Collector's Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 6100,
+    "rating": 4.8,
+    "thumbnail": "/images/games/38.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222140/ss_9c900def2b1d9a003b7d3e202ea2a7556a36e081.1920x1080.jpg?t=1667468479",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222140/ss_3011c05e404043e3bfed1f6de7fe12ffd58ddc9b.1920x1080.jpg?t=1667468479",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222140/ss_9e6c271b6d11b1d0f35da336fb57b35fed0079d1.1920x1080.jpg?t=1667468479"
+    ],
+    "description": "Интерактивная драма про андроидов от Quantic Dream. Каждое решение меняет историю.",
+    "stock": 5
+  },
+  {
+    "id": 39,
+    "title": "UNCHARTED: Legacy of Thieves Collection",
+    "category": "games",
+    "era": "modern",
+    "price": 8300,
+    "rating": 4.8,
+    "thumbnail": "/images/games/39.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659420/e59420593825cddd6c5718561b1ffa44d4086f4d/ss_e59420593825cddd6c5718561b1ffa44d4086f4d.1920x1080.jpg?t=1779309472",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659420/1bb804eb1e1ac1b23840c977586c8f9c2c0393a8/ss_1bb804eb1e1ac1b23840c977586c8f9c2c0393a8.1920x1080.jpg?t=1779309472",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1659420/074469c3a7070c2a821ae984705276028ebf34c2/ss_074469c3a7070c2a821ae984705276028ebf34c2.1920x1080.jpg?t=1779309472"
+    ],
+    "description": "Коллекция приключений Нейтана Дрейка — Uncharted 4 и The Lost Legacy в ремастере.",
+    "stock": 6
+  },
+  {
+    "id": 40,
+    "title": "Grand Theft Auto V — Premium Edition",
+    "category": "games",
+    "era": "modern",
+    "price": 6900,
+    "rating": 4.9,
+    "thumbnail": "/images/games/40.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/ss_32aa18ab3175e3002217862dd5917646d298ab6b.1920x1080.jpg?t=1765387725",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/ss_2744f112fa060320d191a50e8b3a92441a648a56.1920x1080.jpg?t=1765387725",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/ss_da39c16db175f6973770bae6b91d411251763152.1920x1080.jpg?t=1765387725"
+    ],
+    "description": "Легендарная криминальная сага. Лос-Сантос, три героя и бесконечный мир развлечений.",
+    "stock": 10
   }
 ]

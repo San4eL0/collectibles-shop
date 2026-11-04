@@ -62,13 +62,37 @@ export default function ProductPage() {
       </nav>
 
       <div style={{ display: 'grid', gap: '32px', gridAutoRows: 'auto' }} className="product-layout">
-        <div className="cp-card" style={{ padding: '12px', alignSelf: 'start', alignContent: 'start' }}>
-          <img
-            src={imageSrc}
-            alt={translateTitle(product.title)}
-            onError={() => setImgError(true)}
-            style={{ width: '100%', objectFit: 'cover', borderRadius: 0, display: 'block' }}
-          />
+        <div style={{ display: 'grid', gap: '16px', alignSelf: 'start', alignContent: 'start' }}>
+          <div className="cp-card" style={{ padding: '12px' }}>
+            <img
+              src={imageSrc}
+              alt={translateTitle(product.title)}
+              onError={() => setImgError(true)}
+              style={{ width: '100%', objectFit: 'cover', borderRadius: 0, display: 'block' }}
+            />
+          </div>
+
+          {/* Галерея реальных скриншотов из игры — ниже обложки */}
+          {product.screenshots?.length > 0 && (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '10px' }}>
+                <span style={{ color: 'var(--cyan)', fontFamily: 'var(--font-display)', fontSize: '0.75rem', letterSpacing: 2 }}>/// IN-GAME // СКРИНШОТЫ</span>
+                <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+              </div>
+              <div style={{ display: 'grid', gap: '10px' }}>
+                {product.screenshots.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`${translateTitle(product.title)} — скриншот ${i + 1}`}
+                    loading="lazy"
+                    className="screenshot-img"
+                    style={{ width: '100%', display: 'block', border: '1px solid var(--border)', transition: '0.2s' }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div style={{ display: 'grid', gap: '16px', alignContent: 'start' }}>
@@ -119,6 +143,9 @@ export default function ProductPage() {
       <style>{`
         @media (min-width: 900px) {
           .product-layout { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (hover: hover) {
+          .screenshot-img:hover { border-color: var(--border-glow); box-shadow: 0 0 12px var(--border-glow); }
         }
       `}</style>
     </div>

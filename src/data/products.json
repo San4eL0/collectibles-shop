@@ -227,6 +227,11 @@
     "price": 24900,
     "rating": 5.0,
     "thumbnail": "/images/games/21.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/ss_2f649b68d579bf87011487d29bc4ccbfdd97d34f.1920x1080.jpg?t=1792682505",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/900f9bda156599fcd235f08ffb64667f9baa1afe/ss_900f9bda156599fcd235f08ffb64667f9baa1afe.1920x1080.jpg?t=1792682505",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/f678ed77c2fe7060ac9c64e32e1472e3ec3ab7dc/ss_f678ed77c2fe7060ac9c64e32e1472e3ec3ab7dc.1920x1080.jpg?t=1792682505"
+    ],
     "description": "Лимитированное коллекционное издание — статую Джонни Сильверхенда, артбук, металлбокс, саундтрек и код на цифровую копию.",
     "stock": 3
   },
@@ -238,6 +243,11 @@
     "price": 8900,
     "rating": 4.9,
     "thumbnail": "/images/games/22.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/f7f564ecedd09b3e503b071a637aeefdedbeedd8/ss_f7f564ecedd09b3e503b071a637aeefdedbeedd8.1920x1080.jpg?t=1790845156",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/0a38e4d0d57f15934772dbe09b322d08132d5518/ss_0a38e4d0d57f15934772dbe09b322d08132d5518.1920x1080.jpg?t=1790845156",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/19c03c2b997d3a393fc629fd42f55ddb4a3d8dd0/ss_19c03c2b997d3a393fc629fd42f55ddb4a3d8dd0.1920x1080.jpg?t=1790845156"
+    ],
     "description": "Ограниченный тираж в стальном боксе с дополнениями Hearts of Stone и Blood and Wine.",
     "stock": 6
   },
@@ -249,6 +259,11 @@
     "price": 18900,
     "rating": 4.9,
     "thumbnail": "/images/games/23.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_943bf6fe62352757d9070c1d33e50b92fe8539f1.1920x1080.jpg?t=1790290043",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_dcdac9e4b26ac0ee5248bfd2967d764fd00cdb42.1920x1080.jpg?t=1790290043",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/ss_3c41384a24d86dddd58a8f61db77f9dc0bfda8b5.1920x1080.jpg?t=1790290043"
+    ],
     "description": "Коллекционное издание с 23-см статуэткой Малении, стилбуком, артбуком и картой мира.",
     "stock": 2
   },
@@ -260,6 +275,11 @@
     "price": 7200,
     "rating": 4.8,
     "thumbnail": "/images/games/24.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/0597b93e5e3d50cf6bd64bc8814386cd65f03410/ss_0597b93e5e3d50cf6bd64bc8814386cd65f03410.1920x1080.jpg?t=1750959180",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/aa4fa649806500d3403afb0612f03ec1a6283463/ss_aa4fa649806500d3403afb0612f03ec1a6283463.1920x1080.jpg?t=1750959180",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/ebd2126cf786cea9a0c245fe386b7343e368be53/ss_ebd2126cf786cea9a0c245fe386b7343e368be53.1920x1080.jpg?t=1750959180"
+    ],
     "description": "Линейный тираж Special Edition в стальном боксе — коллекционное издание Naughty Dog.",
     "stock": 4
   },
@@ -271,6 +291,11 @@
     "price": 16400,
     "rating": 4.9,
     "thumbnail": "/images/games/25.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/ss_7c59382e67eadf779e0e15c3837ee91158237f11.1920x1080.jpg?t=1776465233",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/ss_05f27139b15c5410d07cd59b7b52adbdf73e13da.1920x1080.jpg?t=1776465233",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/ss_974a7b998c0c14da7fe52a342cf36c98850a57ac.1920x1080.jpg?t=1776465233"
+    ],
     "description": "Ограниченный тираж с 16-см статуэткой Кратоса и Атрея, копией Мьёльнира и стилбуком.",
     "stock": 2
   },
@@ -282,6 +307,11 @@
     "price": 6300,
     "rating": 4.8,
     "thumbnail": "/images/games/26.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/ss_51eb1a47a41271abb0aa781de576f704d95b601b.1920x1080.jpg?t=1763409398",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/ss_d60e16422fc1605181e0fedee3e2cfc1e02c750e.1920x1080.jpg?t=1763409398",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/ss_11409331d57966ef193d66ffcded569d02a4e034.1920x1080.jpg?t=1763409398"
+    ],
     "description": "Ограниченное переиздание Director's Cut в стальном боксе с DLC «Остров Ики».",
     "stock": 5
   },
@@ -293,6 +323,11 @@
     "price": 12900,
     "rating": 4.9,
     "thumbnail": "/images/games/27.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/ss_59d1b19964cc532213df92c8287b75a0bffeb33c.1920x1080.jpg?t=1772502922",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/ss_ab807f8ad9e968a620777caf483cb6020367b9ee.1920x1080.jpg?t=1772502922",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/ss_0442f7fb4327d79802c2db8ea8d23d228a28d896.1920x1080.jpg?t=1772502922"
+    ],
     "description": "Коллекционное издание ремейка — фигурка Леона, артбук, стальной бокс и цифровой саундтрек.",
     "stock": 4
   },
@@ -304,6 +339,11 @@
     "price": 16900,
     "rating": 4.9,
     "thumbnail": "/images/games/28.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1643320/6467b08ef0929424e016dc9ac613656f2119f9a0/ss_6467b08ef0929424e016dc9ac613656f2119f9a0.1920x1080.jpg?t=1793009305",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1643320/dc84227622e39f7af2595cddcab10f131b3640c3/ss_dc84227622e39f7af2595cddcab10f131b3640c3.1920x1080.jpg?t=1793009305",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1643320/343b6833c0c0e565c92db8d73a4863ceece7d450/ss_343b6833c0c0e565c92db8d73a4863ceece7d450.1920x1080.jpg?t=1793009305"
+    ],
     "description": "Ограниченный ультимейт-тираж: фигурка сталкера, артбук, нашивки, стилбук и карта Зоны.",
     "stock": 5
   },
@@ -315,6 +355,11 @@
     "price": 7900,
     "rating": 4.6,
     "thumbnail": "/images/games/29.jpg",
+    "screenshots": [
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/ss_e588ffa6c4a219f7d45e359d838075329fb75e93.1920x1080.jpg?t=1777394467",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/ss_9363c669c80fec75684c22a2203d6490a176bf6c.1920x1080.jpg?t=1777394467",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/ss_62104cb0a8f10f467f14976d3f042f7a97a1c1f9.1920x1080.jpg?t=1777394467"
+    ],
     "description": "Ограниченный тираж в стальном боксе — стилизованная уличная гонка с граффити-артом.",
     "stock": 8
   }

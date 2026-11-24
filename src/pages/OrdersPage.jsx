@@ -5,6 +5,19 @@ import { fetchApi } from '../services/api';
 import Loader from '../components/Loader.jsx';
 import Alert from '../components/Alert.jsx';
 
+const STATUS_LABEL = {
+  processing: 'В обработке',
+  shipped: 'Отправлен',
+  delivered: 'Доставлен',
+  cancelled: 'Отменён',
+};
+
+function formatDate(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
 export default function OrdersPage() {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
@@ -40,23 +53,31 @@ export default function OrdersPage() {
         {orders.map((order) => (
           <div key={order.id} className="cp-card" style={{ padding: '20px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
-              <strong style={{ fontSize: '1.05rem', fontFamily: 'var(--font-display)' }}>ЗАКАЗ #{order.id}</strong>
+              <strong style={{ fontSize: '1.05rem', fontFamily: 'var(--font-display)' }}>
+                ЗАКАЗ #{order.id} {order.userId && <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>// {formatDate(order.createdAt)}</span>}
+              </strong>
               <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                 {order.products?.length || 0} поз. · <strong style={{ color: 'var(--cyan)' }}>{Math.round(order.total || 0).toLocaleString('ru-RU')} ₽</strong>
               </span>
             </div>
 
             <div style={{ display: 'grid', gap: '8px' }}>
-              {(order.products || []).map((p) => (
-                <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+              {(order.products || []).map((p, i) => (
+                <div key={`${p.id}-${i}`} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
                   <span>{p.title} × {p.quantity}</span>
                   <span>{Math.round((p.price || 0) * p.quantity).toLocaleString('ru-RU')} ₽</span>
                 </div>
               ))}
             </div>
 
+            {order.address && (
+              <div style={{ marginTop: '12px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                Доставка: {order.address}
+              </div>
+            )}
+
             <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid var(--border)', fontSize: '0.85rem' }}>
-              Статус: <strong style={{ color: 'var(--accent)' }}>◉ В ОБРАБОТКЕ</strong>
+              Статус: <strong style={{ color: 'var(--accent)' }}>◉ {STATUS_LABEL[order.status] || 'В обработке'}</strong>
             </div>
           </div>
         ))}

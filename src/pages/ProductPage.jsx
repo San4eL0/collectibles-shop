@@ -20,16 +20,33 @@ export default function ProductPage() {
   const [qty, setQty] = useState(1);
   const [imgError, setImgError] = useState(false);
 
+  // Отзывы и оценки
+  const [reviews, setReviews] = useState([]);
+  const [revLoading, setRevLoading] = useState(false);
+  const [myRating, setMyRating] = useState(0);
+  const [myText, setMyText] = useState('');
+  const [revError, setRevError] = useState(null);
+  const [revSaving, setRevSaving] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     setError(null);
     setQty(1);
     setImgError(false);
+    setMyRating(0);
+    setMyText('');
+    setRevError(null);
 
     fetchApi(`/products/${id}`)
       .then(setProduct)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
+
+    setRevLoading(true);
+    fetchApi(`/reviews/product/${id}`)
+      .then((data) => setReviews(data.reviews || []))
+      .catch(() => setReviews([]))
+      .finally(() => setRevLoading(false));
   }, [id]);
 
   if (loading) return <div className="container" style={{ paddingTop: '24px' }}><Loader /></div>;
@@ -50,6 +67,36 @@ export default function ProductPage() {
     for (let i = 0; i < qty; i++) addItem(product);
     showToast(`«${translateTitle(product.title)}» × ${qty} добавлен в корзину`);
   };
+
+  const handleReview = async (e) => {
+    e.preventDefault();
+    setRevError(null);
+    if (!myRating) { setRevError('Выберите оценку (1–5)'); return; }
+    if (!myText.trim()) { setRevError('Напишите текст отзыва'); return; }
+    setRevSaving(true);
+    try {
+      const saved = await fetchApi(`/reviews/product/${product.id}`, {
+        method: 'POST',
+        body: JSON.stringify({ productId: product.id, rating: myRating, text: myText.trim() }),
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+      setReviews((prev) => {
+        const rest = prev.filter((r) => r.authorId !== saved.authorId);
+        return [saved, ...rest];
+      });
+      setMyRating(0);
+      setMyText('');
+      showToast('Отзыв опубликован');
+    } catch (err) {
+      setRevError(err.message);
+    } finally {
+      setRevSaving(false);
+    }
+  };
+
+  const avgRating = reviews.length
+    ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
+    : null;
 
   const imageSrc = imgError || !product.thumbnail
     ? 'https://placehold.co/600x600/141130/00f0ff?text=NO+DATA'
@@ -136,6 +183,68 @@ export default function ProductPage() {
               <dt style={{ color: 'var(--text-muted)' }}>Габариты</dt><dd>{product.dimensions ? `${product.dimensions.width}×${product.dimensions.height}×${product.dimensions.depth} см` : '—'}</dd>
               <dt style={{ color: 'var(--text-muted)' }}>Гарантия</dt><dd>{product.warrantyInformation || '1 год'}</dd>
             </dl>
+          </div>
+
+          {/* ОТЗЫВЫ И ОЦЕНКИ */}
+          <div className="cp-card" style={{ padding: '20px', marginTop: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+              <h3 className="section-title" style={{ fontSize: '1rem', margin: 0 }}>ОТЗЫВЫ КОЛЛЕКЦИОНЕРОВ // REVIEWS</h3>
+              {avgRating && (
+                <span style={{ fontFamily: 'var(--font-display)', color: 'var(--accent)' }}>
+                  ★ {avgRating} <span style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>({reviews.length})</span>
+                </span>
+              )}
+            </div>
+
+            <form onSubmit={handleReview} style={{ display: 'grid', gap: '10px', marginBottom: reviews.length ? '20px' : '0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Оценка:</span>
+                <div style={{ display: 'flex', gap: 4 }}>
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setMyRating(n)}
+                      style={{
+                        fontSize: '1.3rem', color: n <= myRating ? 'var(--accent)' : 'var(--border)',
+                        background: 'transparent', lineHeight: 1, textShadow: n <= myRating ? '0 0 8px var(--accent)' : 'none',
+                      }}
+                    >★</button>
+                  ))}
+                </div>
+              </div>
+              <textarea
+                rows={3}
+                value={myText}
+                onChange={(e) => setMyText(e.target.value)}
+                placeholder="Поделитесь впечатлением о товаре..."
+                style={{ width: '100%', padding: '10px 12px', resize: 'vertical' }}
+              />
+              {revError && <span style={{ color: 'var(--error)', fontSize: '0.82rem' }}>⚠ {revError}</span>}
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <button type="submit" className="btn btn-primary" disabled={revSaving}>
+                  {revSaving ? 'ПУБЛИКАЦИЯ...' : '► ОСТАВИТЬ ОТЗЫВ'}
+                </button>
+              </div>
+            </form>
+
+            {revLoading && <Loader />}
+
+            {!revLoading && reviews.length === 0 && (
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Отзывов пока нет. Будьте первым!</p>
+            )}
+
+            <div style={{ display: 'grid', gap: '14px' }}>
+              {reviews.map((r) => (
+                <div key={r.id} style={{ paddingTop: '14px', borderTop: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
+                    <strong style={{ fontSize: '0.9rem' }}>{r.authorName}</strong>
+                    <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-display)' }}>★ {r.rating}.0</span>
+                  </div>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>{r.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

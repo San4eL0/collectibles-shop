@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
+import { fetchApi } from '../services/api';
 import { translateTitle } from '../utils/translate.js';
 
 export default function CheckoutPage() {
@@ -18,7 +19,8 @@ export default function CheckoutPage() {
     address: ''
   });
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [orderId, setOrderId] = useState(null);
 
   const formatPhone = (value) => {
     let digits = value.replace(/\D/g, '');
@@ -54,26 +56,50 @@ export default function CheckoutPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    setSubmitted(true);
-    clearCart();
-    showToast('Заказ успешно оформлен!');
-    window.scrollTo(0, 0);
+    setSubmitting(true);
+    try {
+      const payload = {
+        products: items.map((i) => ({ id: i.id, title: i.title, price: i.price, quantity: i.quantity, thumbnail: i.thumbnail })),
+        address: form.address,
+      };
+      const res = await fetchApi('/carts', { method: 'POST', body: JSON.stringify(payload) });
+      setOrderId(res.id || res.cart?.id);
+      clearCart();
+      showToast('Заказ успешно оформлен!');
+      window.scrollTo(0, 0);
+    } catch (err) {
+      showToast(err.message || 'Не удалось оформить заказ', 'error');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  if (submitted) {
+  if (!user) {
+    return (
+      <div className="container" style={{ paddingTop: '24px' }}>
+        <h1 className="section-title" style={{ marginBottom: '16px' }}>ОФОРМЛЕНИЕ ЗАКАЗА</h1>
+        <p>Для оформления заказа необходимо <Link to="/login" style={{ color: 'var(--cyan)' }}>войти в аккаунт</Link>.</p>
+      </div>
+    );
+  }
+
+  if (orderId) {
     return (
       <div className="container" style={{ textAlign: 'center', padding: '64px 16px' }}>
         <div style={{ fontSize: '3.5rem', marginBottom: '16px', color: 'var(--success)', textShadow: '0 0 24px var(--success)' }}>✔</div>
         <h1 className="glitch" data-text="ЗАКАЗ ПОДТВЕРЖДЁН" style={{ marginBottom: '16px' }}>ЗАКАЗ ПОДТВЕРЖДЁН</h1>
         <p style={{ color: 'var(--text-muted)', marginBottom: '32px' }}>
-          Номер операции: <strong style={{ color: 'var(--accent)' }}>#{Math.floor(Math.random() * 9000) + 1000}</strong><br />
+          Номер операции: <strong style={{ color: 'var(--accent)' }}>#{orderId}</strong><br />
           Детали отправлены на {form.email}
         </p>
-        <button className="btn btn-primary" onClick={() => navigate('/catalog')}>ПРОДОЛЖИТЬ ПОКУПКИ ►</button>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button className="btn btn-primary" onClick={() => navigate('/catalog')}>ПРОДОЛЖИТЬ ПОКУПКИ ►</button>
+          <Link to="/profile/orders" className="btn btn-outline">◈ МОИ ЗАКАЗЫ</Link>
+        </div>
       </div>
     );
   }
@@ -123,8 +149,8 @@ export default function CheckoutPage() {
 
           {field('Адрес доставки *', 'address', 'text', 'Город, улица, дом, квартира')}
 
-          <button type="submit" className="btn btn-primary" style={{ marginTop: '8px' }}>
-            ПОДТВЕРДИТЬ // {Math.round(totalPrice).toLocaleString('ru-RU')} ₥
+          <button type="submit" className="btn btn-primary" style={{ marginTop: '8px' }} disabled={submitting}>
+            {submitting ? 'ОФОРМЛЕНИЕ...' : `ПОДТВЕРДИТЬ // ${Math.round(totalPrice).toLocaleString('ru-RU')} ₽`}
           </button>
         </form>
 

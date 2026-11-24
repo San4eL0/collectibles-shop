@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { fetchApi } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 import { useUI } from '../context/UIContext.jsx';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const { registerAndLogin } = useAuth();
   const { showToast } = useUI();
 
   const [form, setForm] = useState({ firstName: '', lastName: '', username: '', email: '', password: '', confirm: '' });
@@ -31,12 +32,12 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      await fetchApi('/users/add', {
-        method: 'POST',
-        body: JSON.stringify({ firstName: form.firstName, lastName: form.lastName, username: form.username, email: form.email, password: form.password })
+      await registerAndLogin({
+        firstName: form.firstName, lastName: form.lastName, username: form.username,
+        email: form.email, password: form.password,
       });
-      showToast('Регистрация успешна! Теперь войдите в аккаунт.');
-      navigate('/login');
+      showToast(`Добро пожаловать, ${form.firstName}! Аккаунт создан.`);
+      navigate('/', { replace: true });
     } catch (err) {
       setErrors({ submit: err.message });
     } finally {
